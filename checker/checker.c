@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/15 12:56:33 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/15 14:58:56 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int overflow(long n)
 {
-    if (n > 2147483647 || n < -2147483648)
+    if (n > INT32_MAX || n < INT32_MIN)
         print_err("overflow !");
     return (n);
 }
 
 long is_integer(char *s)
 {
-    int i;
-    int signe;
-    long n;
+    // int i;
+    // int signe;
+    // long n;
 
     return (atoi(s));
 
