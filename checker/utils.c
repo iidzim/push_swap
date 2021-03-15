@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/15 11:15:37 by iidzim           ###   ########.fr       */
+/*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
+/*   Updated: 2021/03/15 10:20:41 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-#define CHECKER_H
+#include "checker.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
+int ft_strlen(char *s)
+{
+    int i;
 
-typedef struct s_stack{
-    int top;
-    int size;
-    int *tab;
-}               t_stack;
+    i = 0;
+    while (s[i])
+        i++;
+    return (i);
+}
 
-int ft_strlen(char *s);
-int print_err(char *s);
+int print_err(char *s)
+{
+    write(2, "Error: \n", 8);
+    write(2, s, ft_strlen(s));
+    exit(1);
+}
 
-#endif
