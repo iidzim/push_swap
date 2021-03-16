@@ -6,107 +6,105 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/15 14:58:56 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/16 19:15:05 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int overflow(long n)
-{
-    if (n > INT32_MAX || n < INT32_MIN)
-        print_err("overflow !");
-    return (n);
-}
-
-long is_integer(char *s)
-{
-    // int i;
-    // int signe;
-    // long n;
-
-    return (atoi(s));
-
-    // i = 0;
-    // n = 0;
-    // signe = 1;
-    // if (s[i] == '-')
-    // {
-    //     signe = -1;
-    //     s[i] *= -1;
-    // }
-    // while (s[++i])
-    // {
-    //     if (s[i] >= 48 && s[i] <= 57)
-    //         n = n * 10 + (s[i] - 48);
-    //     else
-    //         print_err("must be digit");
-    // }
-    // return (overflow(n * signe));
-}
-
 char    is_dup(int *dup, int n, int i)
 {
-    int j;
+	int j;
 
-    j = 0;
-    while (++j < i - 1)
-        if (dup[j] == n)
-            return (1);
-    return (0);
+	j = -1;
+	while (++j < i)
+	{
+		if (dup[j] == n)
+			return (1);
+	}
+	return (0);
 }
 
 int valid_nbr(int argc, char **argv)
 {
-    int     i;
-    int     n;
-    int     *dup;
+	int     i;
+	int     n;
+	int     *dup;
 
-    dup = malloc(sizeof(int) * argc);
-    memset(dup, 0, argc * 4); //0,0,0,0...
-    i = 0;
-    while (argc > ++i) // i = 1
-    {
-        n = is_integer(argv[i]);
-        if (is_dup(dup, n, i - 1))
-            print_err("DUPLICATE !");
-        dup[i-1] = n;
-    }
-    i = 0;
-    while (++i < argc)
-        printf("%d\n", dup[i]);
-    return (0);
+	dup = malloc(sizeof(int) * (argc - 1));
+	memset(dup, 'x', (argc - 1) * 4);
+	i = 0;
+	while (argc > ++i)
+	{
+		n = overflow(ft_atoi(argv[i]));
+		if (is_dup(dup, n, i))
+			print_err();
+		dup[i-1] = n;
+	}
+	i = -1;
+	while (++i < argc - 1)
+		printf("%d | ", dup[i]);
+	printf("\n");
+	
+	fill_list(argc - 1, dup);
+	// free(dup);
+	return (0);
 }
 
-// int fill_list(argc, argv)
-// {
-//     t_stack *l;
+t_list *fill_list(int n, int *dup)
+{
+	t_list *l;
+	t_list *new;
+	size_t size_list;
 
-//     if (!(l = malloc(sizeof(t_stack))))
-//         return (-1);
-//     l->size = argc;
-//     l->tab = malloc(sizeof(int) * l->size);
-//     //1rst arg should be at the top of the stack
-//     push(l, argv);
-    
-//     return (0);
-// }
+	size_list = n - 1;
+	if (!(l = malloc(sizeof(t_list))))
+		return (NULL);
+	while(size_list >= 0)
+	{
+		if (!l)
+			ft_lstnew(dup[size_list]);
+		else
+		{
+			new = ft_lstnew(dup[size_list]);
+			ft_lstadd_front(&l, new);
+		}
+		size_list--;
+	}
+	return (l);
+}
 
+// random number of either positive or negative numbers without any duplicates
 int main(int argc, char **argv)
 {
-    if (argc >= 2)
-    {
-        if (valid_nbr(argc, argv))
-            print_err("random number of either positive or negative numbers without any duplicates");
-        // fill_list(argc, argv);
-        //instructions
-        // if (valid_instruction(argc, argv))
-        //     print_err("msg");
-    }
-    else
-    {
-        printf("add more args");
-        exit(1);
-    }
-    return (0);
+	if (argc >= 2)
+	{
+		valid_nbr(argc, argv);
+		// if (valid_nbr(argc, argv))
+		// 	print_err();
+		// fill_list(argc, argv);
+		//instructions
+		// if (valid_instruction(argc, argv))
+		//     print_err("msg");
+	}
+	else
+		print_err();
+	return (0);
 }
+
+// int fill_list(int n, int *dup)
+// {
+// 	int i;
+// 	int *l;
+
+// 	if (!(l = malloc(sizeof(int) * n)))
+// 		return (-1);
+// 	i = -1;
+// 	while(++i < n)
+// 		l[i] = dup[n - i];
+// 	printf("done");
+// 	i = -1;
+// 	while(++i < n)
+// 		printf("%d\n", l[i]);
+// 	return (0);
+// }
