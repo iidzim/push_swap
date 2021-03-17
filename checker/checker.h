@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/16 19:14:37 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/17 11:45:48 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef struct s_list{
     int value;
-    struct s_list *prev;
+    struct s_list *next;
 }               t_list;
 
 int ft_strlen(char *s);

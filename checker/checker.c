@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/16 19:15:05 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/17 11:58:44 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,54 @@ int valid_nbr(int argc, char **argv)
 	printf("\n");
 	
 	fill_list(argc - 1, dup);
-	// free(dup);
+	free(dup);
 	return (0);
 }
+
+// t_list *fill_list(int n, int *dup)
+// {
+// 	t_list *l;
+// 	t_list *new;
+// 	size_t index;
+
+// 	index = n - 1;
+// 	if (!(l = malloc(sizeof(t_list))))
+// 		return (NULL);
+// 	while(index >= 0)
+// 	{
+// 		// if (!l)
+// 		// 	ft_lstnew(dup[index]);
+// 		// else
+// 		// {
+			
+// 			new = ft_lstnew(dup[index]);
+// 			ft_lstadd_front(&l, new);
+// 			printf("%d\n", l->value);
+// 		// }
+// 		index--;
+// 	}
+// 	return (l);
+// }
 
 t_list *fill_list(int n, int *dup)
 {
 	t_list *l;
 	t_list *new;
-	size_t size_list;
+	size_t index;
+	int tab[4]=""
 
-	size_list = n - 1;
-	if (!(l = malloc(sizeof(t_list))))
-		return (NULL);
-	while(size_list >= 0)
+	index = n - 1;
+	while(index >= 0)
 	{
-		if (!l)
-			ft_lstnew(dup[size_list]);
+		if (!new)
+			l = ft_lstnew(dup[index]);
 		else
 		{
-			new = ft_lstnew(dup[size_list]);
+			new = ft_lstnew(dup[index]);
 			ft_lstadd_front(&l, new);
+			printf("%d\n", l->value);
 		}
-		size_list--;
+		index--;
 	}
 	return (l);
 }

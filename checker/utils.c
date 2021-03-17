@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/16 19:14:35 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/17 12:00:04 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,9 @@ t_list	*ft_lstnew(int value)
 
 	head = (t_list*)malloc(sizeof(t_list));
 	if (head == 0)
-	{
 		return (NULL);
-	}
 	head->value = value;
-	head->prev = NULL;
+	head->next = NULL;
 	return (head);
 }
 
@@ -83,7 +81,61 @@ void	ft_lstadd_front(t_list **list, t_list *new)
 {
 	if (list && new)
 	{
-		new->prev = *list;
+		new->next = *list;
 		*list = new;
 	}
 }
+
+
+// #include <stdio.h>
+// #include <unistd.h>
+// #include <string.h>
+// #include <stdlib.h>
+
+// typedef struct s_list{
+//     int value;
+//     struct s_list *next;
+// }               t_list;
+
+// t_list    *ft_lstnew(int value)
+// {
+//     t_list    *head;
+
+//     head = (t_list*)malloc(sizeof(t_list));
+//     if (head == 0)
+//         return (NULL);
+//     head->value = value;
+//     head->next = NULL;
+//     return (head);
+// }
+
+// void    ft_lstadd_front(t_list **list, t_list *new)
+// {
+//     if (list && new)
+//     {
+//         new->next = *list;
+//         *list = new;
+//     }
+// }
+
+// int main() {
+
+//   t_list *l;
+//   t_list *new;
+//   size_t index = 3
+//   int dup[4]=
+
+//   while(index >= 0)
+//   {
+//       if (!new)
+//           l = ft_lstnew(dup[index]);
+//       else
+//       {
+//           new = ft_lstnew(dup[index]);
+//           ft_lstadd_front(&l, new);
+//           printf("%d\n", l->value);
+//       }
+//       index--;
+//   }
+//   return 0;
+// }
