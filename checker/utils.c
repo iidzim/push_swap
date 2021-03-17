@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/17 12:00:04 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/17 18:56:25 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,56 +86,72 @@ void	ft_lstadd_front(t_list **list, t_list *new)
 	}
 }
 
+t_inst_list	*ft_inst_new(char *value)
+{
+	t_inst_list	*head;
 
-// #include <stdio.h>
-// #include <unistd.h>
-// #include <string.h>
-// #include <stdlib.h>
+	head = (t_inst_list*)malloc(sizeof(t_inst_list));
+	if (head == 0)
+		return (NULL);
+	head->inst = value;
+	head->next = NULL;
+	return (head);
+}
 
-// typedef struct s_list{
-//     int value;
-//     struct s_list *next;
-// }               t_list;
+void	ft_inst_addback(t_inst_list **list, t_inst_list *new)
+{
+	t_inst_list	*last;
 
-// t_list    *ft_lstnew(int value)
-// {
-//     t_list    *head;
+	if (!new)
+		return ;
+	last = *list;
+	new->next = NULL;
+	if ((*list) == NULL)
+		(*list) = new;
+	else
+	{
+		while (last->next != NULL)
+			last = last->next;
+		last->next = new;
+	}
+}	
 
-//     head = (t_list*)malloc(sizeof(t_list));
-//     if (head == 0)
-//         return (NULL);
-//     head->value = value;
-//     head->next = NULL;
-//     return (head);
-// }
+char	*ft_strjoin(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+	char	*p;
+	int		size_s1;
+	int		size_s2;
 
-// void    ft_lstadd_front(t_list **list, t_list *new)
-// {
-//     if (list && new)
-//     {
-//         new->next = *list;
-//         *list = new;
-//     }
-// }
+	if (!s1 || !s2)
+		return (NULL);
+	size_s1 = ft_strlen(s1);
+	size_s2 = ft_strlen(s2);
+	p = malloc(sizeof(char) * (size_s1 + size_s2 + 1));
+	i = -1;
+	j = 0;
+	if (p)
+	{
+		while (s1[++i] != '\0')
+			p[i] = s1[i];
+		while (s2[j])
+			p[i++] = s2[j++];
+		p[i] = '\0';
+		return (p);
+	}
+	return (NULL);
+}
 
-// int main() {
+int			ft_strncmp(char *s1, char *s2, size_t n)
+{
+	size_t	i;
+	int		diff;
 
-//   t_list *l;
-//   t_list *new;
-//   size_t index = 3
-//   int dup[4]=
-
-//   while(index >= 0)
-//   {
-//       if (!new)
-//           l = ft_lstnew(dup[index]);
-//       else
-//       {
-//           new = ft_lstnew(dup[index]);
-//           ft_lstadd_front(&l, new);
-//           printf("%d\n", l->value);
-//       }
-//       index--;
-//   }
-//   return 0;
-// }
+	i = 0;
+	diff = 0;
+	while (n - 1 > i && s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+		i++;
+	diff = s1[i] - s2[i];
+	return (diff);
+}
