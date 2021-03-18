@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/18 11:53:48 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/18 19:20:49 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char    is_dup(int *dup, int n, int i)
 	return (0);
 }
 
-int valid_nbr(int argc, char **argv)
+int valid_nbr(int argc, char **argv, t_all *x)
 {
 	int     i;
 	int     n;
@@ -41,36 +41,38 @@ int valid_nbr(int argc, char **argv)
 			print_err();
 		dup[i-1] = n;
 	}
-	// i = -1;
-	// while (++i < argc - 1)
-	// 	printf("%d | ", dup[i]);
-	// printf("\n");
-	
-	fill_list(argc - 1, dup);
+	fill_list(argc - 1, dup, x);
+	print_list(x->a);
 	free(dup);
 	return (0);
 }
 
-t_list *fill_list(int n, int *dup)
+void fill_list(int n, int *dup, t_all *x)
 {
-	t_list *l;
-	t_list *new;
 	int index;
 
 	index = n - 1;
 	while(index >= 0)
 	{
-		if (!new)
-			l = ft_lstnew(dup[index]);
+		if (!x->a)
+			x->a = ft_lstnew(dup[index]);
 		else
-		{
-			new = ft_lstnew(dup[index]);
-			ft_lstadd_front(&l, new);
-			// printf("%d\n", l->value);
-		}
+			ft_lstadd_front(&x->a, ft_lstnew(dup[index]));
 		index--;
 	}
-	return (l);
+}
+
+void print_list(t_list *l)
+{
+	t_list *temp;
+
+	temp = l;
+	while(temp)
+	{
+		printf("%d - ", temp->value);
+		temp = temp->next;
+	}
+	printf("\n");
 }
 
 int valid_instruction(char *inst)
@@ -94,66 +96,58 @@ int valid_instruction(char *inst)
 		}
 	}
 	return 0;
-} 
+}
 
-int get_instructions(void)
+int exec_op(char *inst, t_all *x)
 {
-	t_inst_list	*instructions;
-	t_inst_list	*new;
-	char	*buff;
-	char *temp;
-	char	*c;
-	ssize_t	r;
-
-	instructions = NULL;
-	buff = strdup("");
-	if (!(c = malloc(sizeof(char) * 2)))
-		return (-1);
-	c[1] = 0;
-	while ((r = read(0, c, 1)) > 0)
+	printf("in\n");
+	if (inst[0] == 's')
 	{
-		if (*c != '\n')
-		{
-			temp = buff;
-			buff = ft_strjoin(buff, c);
-			free(temp);
-		}
-		else
-		{
-			if (valid_instruction(buff))
-			{
-				if (!instructions)
-					instructions = ft_inst_new(buff);
-				else
-				{
-					new = ft_inst_new(buff);
-					ft_inst_addback(&instructions, new);
-				}
-			}
-			else// free list if err
-				ft_freelst(instructions);
-				// printf("error\n");
-			free(buff);
-			buff = strdup("");
-		}
+		printf("before\n");
+		// print_list(x->a);
+		swap(x, inst[1]);
+		printf("after\n");
+		// print_list(x->a);
 	}
-	// print_instr;
-	while(instructions->next != NULL)
+	// else if (inst[0] == 'r' && inst[2] == '\0')
+	// 	rot(x, inst[1]);
+	// else if (inst[0] == 'r' && inst[2] != '\0')
+	// 	reverse_rot(x, inst[2]);
+	// else
+	// 	push(x, inst[1]);
+	return 0;
+}
+
+int get_next_inst(t_all *x)
+{
+	char *line;
+
+	while (get_next_line(0, &line, 4))
 	{
-		printf("%s\n", instructions->inst);
-		instructions = instructions->next;
+		if (strcmp(&line[0], "") == 0)
+		{
+			// if sorted ->ok else ko
+			break;
+		}
+		if (valid_instruction(line))
+			exec_op(line, x);
+		else
+			print_err();
+		free(line);
 	}
 	return 0;
 }
 
+
 // random number of either positive or negative numbers without any duplicates
 int main(int argc, char **argv)
 {
+	t_all x;
+	
 	if (argc >= 2)
 	{
-		valid_nbr(argc, argv);
-		//instructions
-		get_instructions();
+		valid_nbr(argc, argv, &x);
+		get_next_inst(&x);
 	}
 	else
 		print_err();

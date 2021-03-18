@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/18 11:57:59 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/18 18:51:16 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,35 +86,18 @@ void	ft_lstadd_front(t_list **list, t_list *new)
 	}
 }
 
-t_inst_list	*ft_inst_new(char *value)
+int list_size(t_list *l)
 {
-	t_inst_list	*head;
+    int i;
 
-	head = (t_inst_list*)malloc(sizeof(t_inst_list));
-	if (head == 0)
-		return (NULL);
-	head->inst = value;
-	head->next = NULL;
-	return (head);
+    i = 0;
+    while(l != NULL)
+    {
+        l = l->next++;
+        i++;
+    }
+    return (i);
 }
-
-void	ft_inst_addback(t_inst_list **list, t_inst_list *new)
-{
-	t_inst_list	*last;
-
-	if (!new)
-		return ;
-	last = *list;
-	new->next = NULL;
-	if ((*list) == NULL)
-		(*list) = new;
-	else
-	{
-		while (last->next != NULL)
-			last = last->next;
-		last->next = new;
-	}
-}	
 
 char	*ft_strjoin(char *s1, char *s2)
 {
@@ -156,9 +139,9 @@ int		ft_strncmp(char *s1, char *s2, size_t n)
 	return (diff);
 }
 
-void	ft_freelst(t_inst_list *instructions)
+void	ft_freelst(t_list *instructions)
 {
-	t_inst_list *temp;
+	t_list *temp;
 
 	while(instructions != NULL)
 	{
@@ -167,4 +150,48 @@ void	ft_freelst(t_inst_list *instructions)
 		free(temp);
 	}
 	print_err();
+}
+
+char	*ft_strdup(char *str)
+{
+	int		i;
+	char	*p;
+	int		size;
+
+	i = 0;
+	size = ft_strlen(str);
+	p = (char *)malloc((size + 1) * sizeof(char));
+	if (p == NULL)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		p[i] = str[i];
+		i++;
+	}
+	p[i] = '\0';
+	return (p);
+}
+
+char	*ft_substr(char *s, int start, size_t len)
+{
+	size_t	i;
+	char	*p;
+
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	if (start > ft_strlen(s))
+		p = (char *)malloc(1 * sizeof(char));
+	p = (char *)malloc((len + 1) * sizeof(char));
+	if (p == NULL)
+		return (NULL);
+	while (len-- > 0)
+	{
+		p[i] = s[start];
+		i++;
+		start++;
+	}
+	*(p + i) = '\0';
+	return (p);
 }
