@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/17 19:42:22 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/18 11:53:48 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,20 +101,22 @@ int get_instructions(void)
 	t_inst_list	*instructions;
 	t_inst_list	*new;
 	char	*buff;
+	char *temp;
 	char	*c;
 	ssize_t	r;
 
-	printf("00000$\n");
 	instructions = NULL;
 	buff = strdup("");
-	c = malloc(sizeof(char) * 2);
+	if (!(c = malloc(sizeof(char) * 2)))
+		return (-1);
 	c[1] = 0;
 	while ((r = read(0, c, 1)) > 0)
 	{
 		if (*c != '\n')
 		{
+			temp = buff;
 			buff = ft_strjoin(buff, c);
-			// printf("[%s]\n", c);
+			free(temp);
 		}
 		else
 		{
@@ -124,13 +126,22 @@ int get_instructions(void)
 					instructions = ft_inst_new(buff);
 				else
 				{
-					printf("$$$$$\n");
 					new = ft_inst_new(buff);
 					ft_inst_addback(&instructions, new);
-					printf("%s | \n", instructions->inst);
 				}
 			}
-		}			
+			else// free list if err
+				ft_freelst(instructions);
+				// printf("error\n");
+			free(buff);
+			buff = strdup("");
+		}
+	}
+	// print_instr;
+	while(instructions->next != NULL)
+	{
+		printf("%s\n", instructions->inst);
+		instructions = instructions->next;
 	}
 	return 0;
 }

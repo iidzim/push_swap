@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/17 18:56:25 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/18 11:57:59 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (NULL);
 }
 
-int			ft_strncmp(char *s1, char *s2, size_t n)
+int		ft_strncmp(char *s1, char *s2, size_t n)
 {
 	size_t	i;
 	int		diff;
@@ -154,4 +154,17 @@ int			ft_strncmp(char *s1, char *s2, size_t n)
 		i++;
 	diff = s1[i] - s2[i];
 	return (diff);
+}
+
+void	ft_freelst(t_inst_list *instructions)
+{
+	t_inst_list *temp;
+
+	while(instructions != NULL)
+	{
+		temp = instructions;
+		instructions = instructions->next;
+		free(temp);
+	}
+	print_err();
 }

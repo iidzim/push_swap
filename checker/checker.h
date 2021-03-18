@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/17 18:56:33 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/18 11:46:45 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_inst_addback(t_inst_list **list, t_inst_list *new);
 t_inst_list	*ft_inst_new(char *value);
 int valid_instruction(char *inst);
 int get_instructions(void);
-int			ft_strncmp(char *s1, char *s2, size_t n);
-
+int ft_strncmp(char *s1, char *s2, size_t n);
+void	ft_freelst(t_inst_list *instructions);
 
 #endif
