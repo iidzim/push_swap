@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/18 19:20:49 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/19 00:50:53 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int valid_instruction(char *inst)
 	int		i;
 	int		j;
 	int		len;
-	char	*plz[] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
+	char	*tab[] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
 
 	i = -1;
 	while (++i < 11)
@@ -91,7 +91,7 @@ int valid_instruction(char *inst)
 			return 0;
 		else
 		{
-			if (!ft_strncmp(inst, plz[i], ft_strlen(inst)))
+			if (!ft_strncmp(inst, tab[i], ft_strlen(inst)))
 				return 1;
 		}
 	}
@@ -113,8 +113,8 @@ int exec_op(char *inst, t_all *x)
 	// 	rot(x, inst[1]);
 	// else if (inst[0] == 'r' && inst[2] != '\0')
 	// 	reverse_rot(x, inst[2]);
-	// else
-	// 	push(x, inst[1]);
+	else
+		push(x, inst[1]);
 	return 0;
 }
 

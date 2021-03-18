@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 18:25:20 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/18 19:15:41 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/19 00:49:10 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,23 @@ void swap(t_all *x, char c)
     }
 }
 
+void push(t_all *x, char c)
+{
+    // pa : take the first element at the top of b and put it at the top of a
+    if (c == 'a' && x->b)
+        ft_lstadd_front(x->a, x->b);
+    else if (c == 'b' && x->a)
+        ft_lstadd_front(x->b, x->a);
+}
+
+// ra : rotate a - shift up all elements of stack a by 1.
+// The first element becomes the last one
 // void rot(t_all *x, char c)
 // {
     
 // }
 
 // void reverse_rot(t_all *x, char c)
-// {
-    
-// }
-
-// void push(t_all *x, char c)
 // {
     
 // }
