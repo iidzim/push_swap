@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/18 19:19:34 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/19 19:26:38 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int print_err(void);
 int ft_isdigit(char c);
 long ft_atoi(char *s);
 int overflow(long n);
+char    is_dup(int *dup, int n, int i);
 
 t_list	*ft_lstnew(int value);
 void	ft_lstadd_front(t_list **list, t_list *new);
@@ -53,6 +54,7 @@ int valid_instruction(char *inst);
 int get_instructions(void);
 void help_swap(t_list **l);
 void swap(t_all *x, char c);
+void push(t_all *x, char c);
 
 
 #endif
