@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:47:29 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/19 19:43:19 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/20 18:34:14 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,14 @@ void print_list(t_list *l)
 	printf("\n");
 }
 
-void delete_node(t_list **l)
+void ft_delete_node(t_list **l)
 {
 	t_list *head;
 
 	if (l && *l)
 	{
 		head = *l;
-		*l = head->next;
-		free(head->value);
+		*l = (*l)->next;
 		free(head);
 	}
 }

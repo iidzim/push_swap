@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 18:25:20 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/19 19:28:40 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/20 18:47:55 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,28 @@ void swap(t_all *x, char c)
     }
 }
 
-
+// + free the first node of stack a or b
 void push(t_all *x, char c)
 {
-    t_list *temp;
+    t_list *tmp_a, *tmp_b;
 
-    print_list(x->b);
-    temp = x->a;
+    tmp_a = x->a;
+    tmp_b = x->b;
     if (c == 'a')
     {
-        ft_lstadd_front(&x->a, x->b);
-        
+        ft_lstadd_front(&tmp_a, tmp_b);
+        ft_delete_node(&tmp_b);
     }
     else if (c == 'b')
     {
-        ft_lstadd_front(&x->b, x->a);
-
+        printf("a : ");print_list(x->a);
+        printf("b : ");print_list(x->b);
+        ft_lstadd_front(&x->b, tmp_a);
+        printf(">>>>>>>>>\n");
+        printf("a : ");print_list(x->a);
+        printf("b : ");print_list(x->b);
+        ft_delete_node(&tmp_a);
     }
-    print_list(x->b);
 }
 
 // ra : rotate a - shift up all elements of stack a by 1.

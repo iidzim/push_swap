@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/19 19:26:38 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/20 17:06:52 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int list_size(t_list *l);
 void	ft_freelst(t_list *instructions);
 void fill_list(int n, int *dup, t_all *x);
 void print_list(t_list *l);
+void ft_delete_node(t_list **l);
 
 char	*ft_strjoin(char *s1, char *s2);
 int ft_strncmp(char *s1, char *s2, size_t n);

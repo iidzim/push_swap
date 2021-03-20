@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/19 19:10:52 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/20 18:37:00 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,8 @@ int exec_op(char *inst, t_all *x)
 	// 	rot(x, inst[1]);
 	// else if (inst[0] == 'r' && inst[2] != '\0')
 	// 	reverse_rot(x, inst[2]);
-	// else
-	// {
-	// 	print_list(x->a);
-	// 	printf("take the first element at the top of a and put it at the top of b\n");
-	// 	push(x, inst[1]);
-	// 	printf("stack b : ");
-	// 	print_list(x->b);
-	// 	printf("stack a : ");
-	// 	print_list(x->a);
-	// }
+	else
+		push(x, inst[1]);
 	return 0;
 }
 
