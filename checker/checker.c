@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/20 18:37:00 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/27 11:59:40 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int exec_op(char *inst, t_all *x)
 {
 	if (inst[0] == 's')
 		swap(x, inst[1]);
-	// else if (inst[0] == 'r' && inst[2] == '\0')
-	// 	rot(x, inst[1]);
-	// else if (inst[0] == 'r' && inst[2] != '\0')
-	// 	reverse_rot(x, inst[2]);
+	else if (inst[0] == 'r' && inst[2] == '\0')
+		rot(x, inst[1]);
+	else if (inst[0] == 'r' && inst[2] != '\0')
+		reverse_rot(x, inst[2]);
 	else
 		push(x, inst[1]);
 	return 0;

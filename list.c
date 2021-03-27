@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:35:22 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/17 11:45:48 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/27 09:25:27 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void *push(t_list *l, int value)
     t_list *temp;
     
     temp = malloc(sizeof(t_list));
-    if (value)
+    if (l)
     {
         temp->value = value;
         temp->next = l->next;

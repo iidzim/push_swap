@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 18:25:20 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/20 18:47:55 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/27 12:31:24 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,38 +39,109 @@ void swap(t_all *x, char c)
     }
 }
 
-// + free the first node of stack a or b
 void push(t_all *x, char c)
 {
     t_list *tmp_a, *tmp_b;
 
     tmp_a = x->a;
     tmp_b = x->b;
-    if (c == 'a')
+    if (c == 'a' && tmp_b != NULL)
     {
-        ft_lstadd_front(&tmp_a, tmp_b);
-        ft_delete_node(&tmp_b);
+        ft_lstadd_val(&x->a, tmp_b->value);
+        ft_delete_node(&x->b);
     }
-    else if (c == 'b')
+    else if (c == 'b' && tmp_a != NULL)
     {
-        printf("a : ");print_list(x->a);
-        printf("b : ");print_list(x->b);
-        ft_lstadd_front(&x->b, tmp_a);
-        printf(">>>>>>>>>\n");
-        printf("a : ");print_list(x->a);
-        printf("b : ");print_list(x->b);
-        ft_delete_node(&tmp_a);
+        ft_lstadd_val(&x->b, tmp_a->value);
+        ft_delete_node(&x->a);
     }
 }
 
-// ra : rotate a - shift up all elements of stack a by 1.
-// The first element becomes the last one
-// void rot(t_all *x, char c)
-// {
-    
-// }
+/*
+** ra : rotate a - shift up all elements of stack a by 1.
+** The first element becomes the last one
+*/
 
-// void reverse_rot(t_all *x, char c)
-// {
-    
-// }
+void help_rot(t_list **l)
+{
+    t_list *first;
+    t_list *last;
+
+    if ((*l) != NULL && (*l)->next != NULL)
+    {
+        first = *l;
+        last = *l;
+        while(last->next != NULL)
+            last = last->next;
+        *l = first->next;
+        first->next = NULL;
+        last->next = first;
+    }
+    else
+        return ;
+}
+
+void rot(t_all *x, char c)
+{
+    if (c == 'a')
+        help_rot(&x->a);
+    else if (c == 'b')
+        help_rot(&x->b);
+    else
+    {
+        help_rot(&x->a);
+        help_rot(&x->b);
+    }
+}
+
+/*
+** rra : rotate a - shift up all elements of stack a by 1.
+**  The last element becomes the first one.
+*/
+
+void help_rrot(t_list **l)
+{
+    t_list *first;
+    t_list *last;
+
+    if ((*l) != NULL && (*l)->next != NULL)
+    {
+        first = *l;
+        last = *l;
+        while(last->next != NULL)
+            last = last->next;
+        last->next = first;
+        *l = last;
+        last->next = NULL;
+        
+
+        // *l = last;
+        // last->next = first;
+        // last->next = NULL;
+    }
+}
+
+void reverse_rot(t_all *x, char c)
+{
+    if (c == 'a')
+    {
+        print_list(x->a);
+        help_rrot(&x->a);
+        print_list(x->a);
+    }
+    else if (c == 'b')
+    {
+        printf("b>>>>>>>>\n");
+        print_list(x->b);
+        help_rrot(&x->b);
+        print_list(x->b);
+    }
+    else
+    {
+        printf("a&b>>>>>>>>\n");
+        help_rrot(&x->a);
+        help_rrot(&x->b);
+        print_list(x->a);
+        print_list(x->b);
+    }
+}
