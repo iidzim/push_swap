@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/27 11:59:40 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/27 18:40:14 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,6 @@ int valid_instruction(char *inst)
 	return 0;
 }
 
-int exec_op(char *inst, t_all *x)
-{
-	if (inst[0] == 's')
-		swap(x, inst[1]);
-	else if (inst[0] == 'r' && inst[2] == '\0')
-		rot(x, inst[1]);
-	else if (inst[0] == 'r' && inst[2] != '\0')
-		reverse_rot(x, inst[2]);
-	else
-		push(x, inst[1]);
-	return 0;
-}
-
 int get_next_inst(t_all *x)
 {
 	char *line;
@@ -77,7 +64,10 @@ int get_next_inst(t_all *x)
 	{
 		if (strcmp(&line[0], "") == 0)
 		{
-			// if sorted ->ok else ko
+			if (sorted(x->a))
+				printf("OK\n");
+			else
+				printf("KO\n");
 			break;
 		}
 		if (valid_instruction(line))
@@ -89,8 +79,24 @@ int get_next_inst(t_all *x)
 	return 0;
 }
 
+int sorted(t_list *l)
+{
+	t_list *temp;
 
-// random number of either positive or negative numbers without any duplicates
+	temp = l;
+	if(l != NULL && l->next != NULL)
+	{
+		while(temp->next != NULL)
+		{
+			if (temp->value > temp->next->value)
+				return (0);
+			temp = temp->next;
+		}
+		return (1);
+	}
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
 	t_all x;

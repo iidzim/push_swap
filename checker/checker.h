@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/27 12:07:36 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/27 19:03:11 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ typedef struct      s_list
     struct s_list   *next;
 }                   t_list;
 
-typedef struct s_all{
-    t_list *a;
-    t_list *b;
-}               t_all;
+typedef struct      s_all
+{
+    t_list          *a;
+    t_list          *b;
+}                   t_all;
 
 int ft_strlen(char *s);
 int print_err(void);
@@ -61,5 +62,8 @@ void rot(t_all *x, char c);
 void help_rot(t_list **l);
 void reverse_rot(t_all *x, char c);
 void help_rrot(t_list **l);
+
+//////////////
+void sort3num(t_all *x);
 
 #endif
