@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 18:25:20 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/27 12:31:24 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/27 16:26:18 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,21 +103,18 @@ void help_rrot(t_list **l)
 {
     t_list *first;
     t_list *last;
+    t_list *latest;
 
     if ((*l) != NULL && (*l)->next != NULL)
     {
         first = *l;
         last = *l;
-        while(last->next != NULL)
+        while(last->next->next != NULL)
             last = last->next;
-        last->next = first;
-        *l = last;
+        latest = last->next;
+        latest->next = first;
+        *l = latest;
         last->next = NULL;
-        
-
-        // *l = last;
-        // last->next = first;
-        // last->next = NULL;
     }
 }
 
@@ -125,6 +122,7 @@ void reverse_rot(t_all *x, char c)
 {
     if (c == 'a')
     {
+        printf("a>>>>>>>>\n");
         print_list(x->a);
         help_rrot(&x->a);
         print_list(x->a);
