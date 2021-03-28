@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/27 18:40:14 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/28 11:00:46 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int get_next_inst(t_all *x)
 				printf("OK\n");
 			else
 				printf("KO\n");
+			ft_freelst(x->a);
+			ft_freelst(x->b);
 			break;
 		}
 		if (valid_instruction(line))
