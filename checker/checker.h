@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/27 19:03:11 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/29 11:29:43 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,11 @@ char *ft_substr(char *s, int start, size_t len);
 int	ft_return(char **str, char **line);
 int	get_next_line(int fd, char **line, int buff_size);
 
+int valid_nbr(int argc, char **argv, t_all *x);
 int valid_instruction(char *inst);
-int get_instructions(void);
+int get_next_inst(t_all *x);
+int sorted(t_list *l);
+
 void help_swap(t_list **l);
 void swap(t_all *x, char c);
 void push(t_all *x, char c);
@@ -65,5 +68,6 @@ void help_rrot(t_list **l);
 
 //////////////
 void sort3num(t_all *x);
+void quick_sort(t_all *x);
 
 #endif

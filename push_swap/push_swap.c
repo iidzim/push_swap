@@ -6,39 +6,21 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:51:15 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/28 15:27:00 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/03/29 14:12:52 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker/checker.h"
 
-void sort3num(t_all *x)
+void quick_sort(t_all *x)
 {
-    int left, mid, right;
-	
-	left = x->a->value;
-	mid = x->a->next->value;
-	right = x->a->next->next->value;
-	//case1
-	if (left > mid && mid < right && left < right)
-		swap(&x->a);
-	//case2
-	if (left > mid && mid > right && left > right)
-	{
-		swap(&x->a);
-		reverse_rot(x, x);
-	}
-	//case3
-	if (left > mid && mid < right && left > left)
-		
-	//case4
-	if (left < mid && mid > right && left < right)
-	{
-		
-	}
-	//case5
-	if (left < mid && mid > right && left > left)
+	int first, last;
+	int len_list;
 
+	len_list = list_size(x->a);
+	
+	
+	
 }
 
 int main(int argc, char **argv)
@@ -48,9 +30,20 @@ int main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		valid_nbr(argc, argv, &x);
-		sort(&x);
+		quick_sort(&x);
+		if (sorted(x.a))
+			printf("OK\n");
+		else
+			printf("KO\n");
+		ft_freelst(x.a);
+		ft_freelst(x.b);
+		return (0);
 	}
 	else
 		print_err();
 	return (0);
 }
+
+//ToDo
+//choose a pivot
+//
