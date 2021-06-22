@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/29 11:29:43 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/22 15:44:58 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct      s_all
 {
     t_list          *a;
     t_list          *b;
+    int             size_a;
+    int             size_b;
 }                   t_all;
 
 int ft_strlen(char *s);
@@ -41,7 +43,7 @@ t_list *ft_lstnew(int value);
 void ft_lstadd_front(t_list **list, t_list *new);
 int list_size(t_list *l);
 void ft_freelst(t_list *instructions);
-void fill_list(int n, int *dup, t_all *x);
+void fill_list(int *dup, t_all *x);
 void print_list(t_list *l);
 void ft_delete_node(t_list **l);
 void ft_lstadd_val(t_list **l, int val);
@@ -58,16 +60,13 @@ int valid_instruction(char *inst);
 int get_next_inst(t_all *x);
 int sorted(t_list *l);
 
-void help_swap(t_list **l);
+int exec_op(char *inst, t_all *x);
 void swap(t_all *x, char c);
 void push(t_all *x, char c);
 void rot(t_all *x, char c);
-void help_rot(t_list **l);
 void reverse_rot(t_all *x, char c);
-void help_rrot(t_list **l);
 
 //////////////
-void sort3num(t_all *x);
 void quick_sort(t_all *x);
 
 #endif

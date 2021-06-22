@@ -6,21 +6,123 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:51:15 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/29 14:12:52 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/22 17:08:41 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker/checker.h"
 
-void quick_sort(t_all *x)
+int	find_max_min(t_list *a, int i)
 {
-	int first, last;
-	int len_list;
+	t_list	*temp;
+	int		value;
 
-	len_list = list_size(x->a);
-	
-	
-	
+	temp = a;
+	value = temp->value;
+	while (temp)
+	{
+		if ((value < temp->value && i == 1) || (value > temp->value && i == 2))
+			value = temp->value;
+		temp = temp->next;
+	}
+	return (value);
+}
+
+int operations_3num(t_all *x, int max)
+{
+	int top;
+	int middle;
+	int moves;
+
+	moves = 0;
+	top = x->a->value;
+	middle = x->a->next->value;
+	if (max == top)
+	{
+		rot(x, 'a');
+		moves += 1;
+	}
+	if (max == middle)
+	{
+		swap(x, 'a');
+		rot(x, 'a');
+		moves += 2;
+	}
+	if (top > middle)
+	{
+		swap(x, 'a');
+		moves += 1;
+	}
+	return (0);
+}
+
+int	sort_3num(t_all *x)
+{
+	int top;
+	int middle;
+	int bottom;
+	int max;
+	int	mov;
+
+	top = x->a->value;
+	middle = x->a->next->value;
+	bottom = x->a->next->next->value;
+	max = find_max_min(x->a, 1);
+	mov = operations_3num(x, max);
+	return (mov);
+}
+
+int	push_min_to_stack(t_all *x, int min, char c)
+{
+	t_list	*temp;
+	int		cpt;
+	int		moves;
+
+	cpt = 0;
+	temp = x->a;
+	while (temp)
+	{
+		if (temp->value == min)
+			break ;
+		cpt += 1;
+		temp = temp->next;
+	}
+	if (cpt < (x->size_a / 2))
+
+	else if ((x->size_a - cpt) < (x->size_a / 2))
+		
+	return (moves);	
+}
+
+int	sort_5num(t_all *x)
+{
+	int min1, min2;
+	int moves;
+
+	min1 = find_max_min(x->a, 2);
+	moves = push_min_to_stack(x, min1, 'b');
+	min2 = find_max_min(x->a, 2);
+	moves += push_min_to_stack(x, min2, 'b');
+	moves += sort_3num(x);
+	if (min2 < min1)
+	{
+		swap(x, 'b');
+		moves += 1;
+	}
+	push(x, 'a');
+	push(x, 'a');
+	moves += 2;
+	return (moves);
+}
+
+void	sort_stack(t_all *x)
+{
+	if (x->size_a == 3)
+		sort_3num(x);
+	else if (x->size_a == 5)
+		sort_5num(x);
+	else
+		sort_100(x);
 }
 
 int main(int argc, char **argv)
@@ -30,11 +132,10 @@ int main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		valid_nbr(argc, argv, &x);
-		quick_sort(&x);
 		if (sorted(x.a))
 			printf("OK\n");
 		else
-			printf("KO\n");
+			sort_stack(&x);
 		ft_freelst(x.a);
 		ft_freelst(x.b);
 		return (0);
@@ -44,6 +145,6 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-//ToDo
-//choose a pivot
-//
+//hint : don't use quick sort for most sorted list
+//The time complexity of quicksort is dependent upon the partition and how sorted the list already is.
+//check if the list is already sorted

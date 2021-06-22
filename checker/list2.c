@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:49:05 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/27 18:49:22 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/22 10:49:13 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void ft_freelst(t_list *inst)
 		inst = inst->next;
 		free(temp);
 	}
-	print_err();
+	// print_err();
 }
 
-void fill_list(int n, int *dup, t_all *x)
+void fill_list(int *dup, t_all *x)
 {
 	int index;
 
-	index = n - 1;
+	index = x->size_a;
 	while(index >= 0)
 	{
 		if (!x->a)
@@ -60,7 +60,7 @@ void print_list(t_list *l)
 	temp = l;
 	while(temp)
 	{
-		printf("%d - ", temp->value);
+		printf("%d\n", temp->value);
 		temp = temp->next;
 	}
 	printf("\n");

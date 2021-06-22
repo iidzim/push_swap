@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/29 10:17:00 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/22 11:51:46 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,21 @@ int valid_nbr(int argc, char **argv, t_all *x)
 	int     *dup;
 
 	dup = malloc(sizeof(int) * (argc - 1));
-	memset(dup, 'x', (argc - 1) * 4);
+	// memset(dup, 0, (argc - 1) * 4);
 	i = 0;
 	while (argc > ++i)
 	{
 		n = overflow(ft_atoi(argv[i]));
 		if (is_dup(dup, n, i))
+		{
+			free(dup);
 			print_err();
+		}
 		dup[i-1] = n;
 	}
-	fill_list(argc - 1, dup, x);
+	dup[i - 1] = '\0';
+	x->size_a = argc - 1;
+	fill_list(dup, x);
 	free(dup);
 	return (0);
 }
@@ -56,18 +61,42 @@ int valid_instruction(char *inst)
 	return 0;
 }
 
+char	*read_cmd(void)
+{
+	size_t	r;
+	char	*line;
+	char	*buffer;
+
+	buffer = malloc(sizeof(char) * 2);
+	r = read(0, buffer, 1);
+	line = malloc(sizeof(char) * 2);
+	if (!buffer || !line)
+		return (NULL);
+	line[0] = '\0';
+	while (r > 0)
+	{
+		buffer[1] = 0;
+		if (buffer[0] == '\n')
+			break ;
+		line = ft_strjoinchar(line, buffer[0]);
+		r = read(0, buffer, 1);
+	}
+	free(buffer);
+	return (line);
+}
+
 int get_next_inst(t_all *x)
 {
 	char *line;
 
-	while (get_next_line(0, &line, 4))
+	while (get_next_line(0, &line, 4) > 0)
 	{
-		if (strcmp(&line[0], "") == 0)
+		if (!strcmp(&line[0], ""))
 		{
 			if (sorted(x->a))
-				printf("OK\n");
+				write(1, "OK\n", 3);
 			else
-				printf("KO\n");
+				write(1, "KO\n", 3);
 			ft_freelst(x->a);
 			ft_freelst(x->b);
 			break;
@@ -83,6 +112,7 @@ int get_next_inst(t_all *x)
 
 int sorted(t_list *l)
 {
+	print_list(l);
 	t_list *temp;
 
 	temp = l;
@@ -102,13 +132,16 @@ int sorted(t_list *l)
 int main(int argc, char **argv)
 {
 	t_all x;
-	
+
 	if (argc >= 2)
 	{
 		valid_nbr(argc, argv, &x);
 		get_next_inst(&x);
 	}
+	else if (argc == 1)
+		return (0);
 	else
 		print_err();
+	print_list(x.a);
 	return (0);
 }
