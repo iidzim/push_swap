@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:38:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/23 10:00:27 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 16:47:22 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,48 @@
 
 void help_rot(t_list **l)
 {
-    t_list *first;
-    t_list *last;
+	t_list	*first;
+	t_list	*last;
 
-    if ((*l) != NULL && (*l)->next != NULL)
-    {
-        first = *l;
-        last = *l;
-        while(last->next != NULL)
-            last = last->next;
-        *l = first->next;
-        first->next = NULL;
-        last->next = first;
-    }
-    else
-        return ;
+	if ((*l) != NULL && (*l)->next != NULL)
+	{
+		first = *l;
+		last = *l;
+		while(last->next != NULL)
+			last = last->next;
+		*l = first->next;
+		first->next = NULL;
+		last->next = first;
+	}
+	else
+		return ;
 }
 
-void rot(t_all *x, char c)
+void rot(t_all *x, char c, int i)
 {
-    if (c == 'a')
-        help_rot(&x->a);
-    else if (c == 'b')
-        help_rot(&x->b);
-    else
-    {
-        help_rot(&x->a);
-        help_rot(&x->b);
-    }
+	if (c == 'a')
+	{
+		help_rot(&x->a);
+		if (i == 1)
+			write(1, "ra\n", 3);
+	}
+	else if (c == 'b')
+	{
+		help_rot(&x->b);
+		if (i == 1)
+			write(1, "rb\n", 3);
+	}
+	else
+	{
+		help_rot(&x->a);
+		help_rot(&x->b);
+		if (i == 1)
+		{
+			write(1, "rr\n", 3);
+			x->moves += 1;
+		}
+	}
+	x->moves += 1;
 }
 
 /*
@@ -56,32 +70,46 @@ void rot(t_all *x, char c)
 
 void help_rrot(t_list **l)
 {
-    t_list *first;
-    t_list *last;
-    t_list *latest;
+	t_list *first;
+	t_list *last;
+	t_list *latest;
 
-    if ((*l) != NULL && (*l)->next != NULL)
-    {
-        first = *l;
-        last = *l;
-        while(last->next->next != NULL)
-            last = last->next;
-        latest = last->next;
-        latest->next = first;
-        *l = latest;
-        last->next = NULL;
-    }
+	if ((*l) != NULL && (*l)->next != NULL)
+	{
+		first = *l;
+		last = *l;
+		while(last->next->next != NULL)
+			last = last->next;
+		latest = last->next;
+		latest->next = first;
+		*l = latest;
+		last->next = NULL;
+	}
 }
 
-void reverse_rot(t_all *x, char c)
+void	reverse_rot(t_all *x, char c, int i)
 {
-    if (c == 'a')
-        help_rrot(&x->a);
-    else if (c == 'b')
-        help_rrot(&x->b);
-    else
-    {
-        help_rrot(&x->a);
-        help_rrot(&x->b);
-    }
+	if (c == 'a')
+	{
+		help_rrot(&x->a);
+		if (i == 1)
+			write(1, "rra\n", 4);
+	}
+	else if (c == 'b')
+	{
+		help_rrot(&x->b);
+		if (i == 1)
+			write(1, "rrb\n", 4);
+	}
+	else
+	{
+		help_rrot(&x->a);
+		help_rrot(&x->b);
+		if (i == 1)
+		{
+			write(1, "rrr\n", 4);
+			x->moves += 1;
+		}
+	}
+	x->moves += 1;
 }

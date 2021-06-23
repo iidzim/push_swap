@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:51:15 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/23 14:54:26 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 17:13:08 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,20 @@ int	find_max_min(t_list *a, int i)
 	return (value);
 }
 
-int operations_3num(t_all *x, int max)
+int operations_3num(t_all *x, int max, int top, int middle)
 {
-	int top;
-	int middle;
-	int moves;
-
-	moves = 0;
-	top = x->a->value;
-	middle = x->a->next->value;
 	if (max == top)
-	{
-		rot(x, 'a');
-		moves += 1;
-	}
+		rot(x, 'a', 1);
 	if (max == middle)
 	{
-		swap(x, 'a');
-		rot(x, 'a');
-		moves += 2;
+		swap(x, 'a', 1);
+		rot(x, 'a', 1);
 	}
+	top = x->a->value;
+	middle = x->a->next->value;
 	if (top > middle)
-	{
-		swap(x, 'a');
-		moves += 1;
-	}
+		swap(x, 'a', 1);
+	printf("moves >>> %d\n",x->moves);
 	return (0);
 }
 
@@ -62,24 +51,26 @@ int	sort_3num(t_all *x)
 	int middle;
 	int bottom;
 	int max;
-	int	mov;
 
 	top = x->a->value;
 	middle = x->a->next->value;
 	bottom = x->a->next->next->value;
+	if (top < middle && middle > bottom)
+	{
+		reverse_rot(x, 'a', 1);
+		return (x->moves);
+	}
 	max = find_max_min(x->a, 1);
-	mov = operations_3num(x, max);
-	return (mov);
+	operations_3num(x, max, top, middle);
+	return (x->moves);
 }
 
 int	push_min_to_stack(t_all *x, int min, char c)
 {
 	t_list	*temp;
 	int		cpt;
-	int		moves;
 
 	cpt = 0;
-	moves = 0;
 	temp = x->a;
 	while (temp)
 	{
@@ -91,47 +82,36 @@ int	push_min_to_stack(t_all *x, int min, char c)
 	if (cpt < (x->size_a / 2))
 	{
 		while (cpt-- > 0)
-		{
-			rot(x, 'a'); // + print
-			moves += 1;
-		}
+			rot(x, 'a', 1);
 	}
 	else //?if ((x->size_a - cpt) < (x->size_a / 2))
 	{
 		while (x->size_a - cpt >= 0)
-		{
-			reverse_rot(x, 'a');
-			moves += 1;
-		}
+			reverse_rot(x, 'a', 1);
 	}
-	push(x, c);
-	moves += 1;
-	return (moves);	
+	push(x, c, 1);
+	return (x->moves);	
 }
 
 int	sort_5num(t_all *x)
 {
 	int min1, min2;
-	int moves;
 
 	min1 = find_max_min(x->a, 2);
-	moves = push_min_to_stack(x, min1, 'b');
+	push_min_to_stack(x, min1, 'b');
 	min2 = find_max_min(x->a, 2);
-	moves += push_min_to_stack(x, min2, 'b');
-	moves += sort_3num(x);
+	push_min_to_stack(x, min2, 'b');
+	sort_3num(x);
 	if (min2 < min1)
-	{
-		swap(x, 'b');
-		moves += 1;
-	}
-	push(x, 'a');
-	push(x, 'a');
-	moves += 2;
-	return (moves);
+		swap(x, 'b', 1);
+	push(x, 'a', 1);
+	push(x, 'a', 1);
+	return (x->moves);
 }
 
 void	sort_stack(t_all *x)
 {
+	printf("size_a -> [%d]\n", x->size_a);
 	if (x->size_a == 3)
 		sort_3num(x);
 	else //if (x->size_a == 5)
@@ -149,7 +129,6 @@ int main(int argc, char **argv)
 {
 	t_all x;
 
-	printf("agrc == %d\n", argc);
 	if (argc >= 2)
 	{
 		valid_nbr(argc, argv, &x);

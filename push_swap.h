@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/23 09:56:30 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 16:52:32 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct      s_all
     t_list          *b;
     int             size_a;
     int             size_b;
+    int             moves;
 }                   t_all;
 
 
@@ -83,10 +84,10 @@ int sorted(t_list *l);
 /*
 ** operation.c - operation2.c
 */
-int exec_op(char *inst, t_all *x);
-void swap(t_all *x, char c);
-void push(t_all *x, char c);
-void rot(t_all *x, char c);
-void reverse_rot(t_all *x, char c);
+int exec_op(char *inst, t_all *x, int i);
+void swap(t_all *x, char c, int i);
+void push(t_all *x, char c, int i);
+void rot(t_all *x, char c, int i);
+void reverse_rot(t_all *x, char c, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/23 14:52:23 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 16:52:16 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int valid_nbr(int argc, char **argv, t_all *x)
 	}
 	dup[i - 1] = '\0';
 	x->size_a = argc - 1;
-	printf("size_a -> [%d]\n", x->size_a);
 	fill_list(dup, x);
 	print_list(x->a);
 	free(dup);
@@ -104,7 +103,7 @@ int get_next_inst(t_all *x)
 			break;
 		}
 		if (valid_instruction(line))
-			exec_op(line, x);
+			exec_op(line, x, 0);
 		else
 			print_err();
 		free(line);
