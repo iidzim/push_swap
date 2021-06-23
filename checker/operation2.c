@@ -6,11 +6,11 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:38:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/27 18:39:19 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 10:00:27 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../push_swap.h"
 
 /*
 ** ra : rotate a - shift up all elements of stack a by 1.

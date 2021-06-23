@@ -6,11 +6,11 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/22 11:51:46 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 14:52:23 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../push_swap.h"
 
 int valid_nbr(int argc, char **argv, t_all *x)
 {
@@ -18,8 +18,8 @@ int valid_nbr(int argc, char **argv, t_all *x)
 	int     n;
 	int     *dup;
 
-	dup = malloc(sizeof(int) * (argc - 1));
-	// memset(dup, 0, (argc - 1) * 4);
+	dup = malloc(sizeof(int) * (argc));
+	// memset(dup, 2147483647, (argc - 1) * 4);
 	i = 0;
 	while (argc > ++i)
 	{
@@ -33,7 +33,9 @@ int valid_nbr(int argc, char **argv, t_all *x)
 	}
 	dup[i - 1] = '\0';
 	x->size_a = argc - 1;
+	printf("size_a -> [%d]\n", x->size_a);
 	fill_list(dup, x);
+	print_list(x->a);
 	free(dup);
 	return (0);
 }
@@ -61,29 +63,29 @@ int valid_instruction(char *inst)
 	return 0;
 }
 
-char	*read_cmd(void)
-{
-	size_t	r;
-	char	*line;
-	char	*buffer;
+// char	*read_cmd(void)
+// {
+// 	size_t	r;
+// 	char	*line;
+// 	char	*buffer;
 
-	buffer = malloc(sizeof(char) * 2);
-	r = read(0, buffer, 1);
-	line = malloc(sizeof(char) * 2);
-	if (!buffer || !line)
-		return (NULL);
-	line[0] = '\0';
-	while (r > 0)
-	{
-		buffer[1] = 0;
-		if (buffer[0] == '\n')
-			break ;
-		line = ft_strjoinchar(line, buffer[0]);
-		r = read(0, buffer, 1);
-	}
-	free(buffer);
-	return (line);
-}
+// 	buffer = malloc(sizeof(char) * 2);
+// 	r = read(0, buffer, 1);
+// 	line = malloc(sizeof(char) * 2);
+// 	if (!buffer || !line)
+// 		return (NULL);
+// 	line[0] = '\0';
+// 	while (r > 0)
+// 	{
+// 		buffer[1] = 0;
+// 		if (buffer[0] == '\n')
+// 			break ;
+// 		line = ft_strjoinchar(line, buffer[0]);
+// 		r = read(0, buffer, 1);
+// 	}
+// 	free(buffer);
+// 	return (line);
+// }
 
 int get_next_inst(t_all *x)
 {
@@ -112,7 +114,8 @@ int get_next_inst(t_all *x)
 
 int sorted(t_list *l)
 {
-	print_list(l);
+	// printf("check_if_sorted\n");
+	// print_list(l);
 	t_list *temp;
 
 	temp = l;
@@ -129,19 +132,19 @@ int sorted(t_list *l)
 	return (0);
 }
 
-int main(int argc, char **argv)
-{
-	t_all x;
+// int main(int argc, char **argv)
+// {
+// 	t_all x;
 
-	if (argc >= 2)
-	{
-		valid_nbr(argc, argv, &x);
-		get_next_inst(&x);
-	}
-	else if (argc == 1)
-		return (0);
-	else
-		print_err();
-	print_list(x.a);
-	return (0);
-}
+// 	if (argc >= 2)
+// 	{
+// 		valid_nbr(argc, argv, &x);
+// 		get_next_inst(&x);
+// 	}
+// 	else if (argc == 1)
+// 		return (0);
+// 	else
+// 		print_err();
+// 	print_list(x.a);
+// 	return (0);
+// }

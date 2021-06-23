@@ -6,11 +6,11 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:49:11 by iidzim            #+#    #+#             */
-/*   Updated: 2021/03/19 15:52:29 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 10:00:27 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../push_swap.h"
 
 int ft_strlen(char *s)
 {

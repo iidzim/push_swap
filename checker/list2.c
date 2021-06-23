@@ -6,11 +6,11 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:49:05 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/22 10:49:13 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 11:43:46 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../push_swap.h"
 
 int list_size(t_list *l)
 {
@@ -43,12 +43,12 @@ void fill_list(int *dup, t_all *x)
 	int index;
 
 	index = x->size_a;
-	while(index >= 0)
+	while(index > 0)
 	{
 		if (!x->a)
-			x->a = ft_lstnew(dup[index]);
+			x->a = ft_lstnew(dup[index - 1]);
 		else
-			ft_lstadd_front(&x->a, ft_lstnew(dup[index]));
+			ft_lstadd_front(&x->a, ft_lstnew(dup[index - 1]));
 		index--;
 	}
 }

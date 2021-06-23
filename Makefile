@@ -6,15 +6,23 @@
 #    By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/27 14:24:43 by iidzim            #+#    #+#              #
-#    Updated: 2021/06/22 10:34:07 by iidzim           ###   ########.fr        #
+#    Updated: 2021/06/23 12:14:02 by iidzim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME1			=	checker
-NAME2			=	push_swap
+NAME1			=	push_swap
+NAME2			=	checker
 
-SRCS			=	./push_swap/push_swap.c
-					# ./push_swap/
+SRCS			=	./push_swap/push_swap.c\
+					./checker/operation.c\
+					./checker/operation2.c\
+					./checker/list.c\
+					./checker/list2.c\
+					./checker/utils.c\
+					./checker/utils.c\
+					./checker/checker.c\
+					./checker/gnl.c\
+					./checker/gnl_utils.c
 
 # SRCB			=	
 
@@ -23,7 +31,7 @@ OBJS			=	$(SRCS:.c=.o)
 # OBJB			=	$(SRCB:.c=.o)
 
 CC				= 	gcc
-FLAGS           =  -Wall -Wextra -Werror
+FLAGS           =  -Wall -Wextra -Werror -g -fsanitize=address
 RM				= 	rm -f
 
 all:			$(NAME)

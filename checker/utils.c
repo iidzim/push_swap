@@ -6,11 +6,11 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/22 10:40:28 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 12:42:06 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../push_swap.h"
 
 int print_err(void)
 {

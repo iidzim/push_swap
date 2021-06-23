@@ -6,11 +6,11 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:51:15 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/22 17:08:41 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 14:54:26 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker/checker.h"
+#include "../push_swap.h"
 
 int	find_max_min(t_list *a, int i)
 {
@@ -79,6 +79,7 @@ int	push_min_to_stack(t_all *x, int min, char c)
 	int		moves;
 
 	cpt = 0;
+	moves = 0;
 	temp = x->a;
 	while (temp)
 	{
@@ -88,9 +89,23 @@ int	push_min_to_stack(t_all *x, int min, char c)
 		temp = temp->next;
 	}
 	if (cpt < (x->size_a / 2))
-
-	else if ((x->size_a - cpt) < (x->size_a / 2))
-		
+	{
+		while (cpt-- > 0)
+		{
+			rot(x, 'a'); // + print
+			moves += 1;
+		}
+	}
+	else //?if ((x->size_a - cpt) < (x->size_a / 2))
+	{
+		while (x->size_a - cpt >= 0)
+		{
+			reverse_rot(x, 'a');
+			moves += 1;
+		}
+	}
+	push(x, c);
+	moves += 1;
 	return (moves);	
 }
 
@@ -119,16 +134,22 @@ void	sort_stack(t_all *x)
 {
 	if (x->size_a == 3)
 		sort_3num(x);
-	else if (x->size_a == 5)
+	else //if (x->size_a == 5)
+	{
+		printf(">>>5\n");
 		sort_5num(x);
-	else
-		sort_100(x);
+		printf("sorted\n");
+	}
+	print_list(x->a);
+	// else
+	// 	sort_100(x);
 }
 
 int main(int argc, char **argv)
 {
 	t_all x;
-	
+
+	printf("agrc == %d\n", argc);
 	if (argc >= 2)
 	{
 		valid_nbr(argc, argv, &x);
