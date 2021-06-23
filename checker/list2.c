@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:49:05 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/23 11:43:46 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/23 18:25:03 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,11 @@ void print_list(t_list *l)
 	t_list *temp;
 
 	temp = l;
+	printf("\n**********\n");
 	while(temp)
 	{
 		printf("%d\n", temp->value);
 		temp = temp->next;
 	}
-	printf("\n");
+	printf("**********\n\n");
 }

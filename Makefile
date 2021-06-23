@@ -6,7 +6,7 @@
 #    By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/27 14:24:43 by iidzim            #+#    #+#              #
-#    Updated: 2021/06/23 12:14:02 by iidzim           ###   ########.fr        #
+#    Updated: 2021/06/23 18:35:42 by iidzim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,9 @@ OBJS			=	$(SRCS:.c=.o)
 
 # OBJB			=	$(SRCB:.c=.o)
 
-CC				= 	gcc
-FLAGS           =  -Wall -Wextra -Werror -g -fsanitize=address
-RM				= 	rm -f
+CC				=	gcc
+FLAGS			=	-Wall -Wextra -Werror -g -fsanitize=address
+RM				=	rm -f
 
 all:			$(NAME)
 
