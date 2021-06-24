@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:38:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/24 11:48:45 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/24 20:28:29 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void help_rot(t_list **l)
 	else
 		return ;
 }
+
 
 void rot(t_all *x, char c, int i)
 {

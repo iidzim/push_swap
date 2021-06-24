@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:51:15 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/24 15:46:27 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/24 21:57:59 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,79 @@ void	sort_small_stack(t_all *x)
 	printf("moves >>>>>>%d\n", x->moves);
 }
 
+t_list	*sort_linked_list(t_list *l)
+{
+	t_list	*index;
+	t_list	*current;
+	int		temp;
+
+	current = l;
+	index = NULL;
+	if (!current)
+		return (NULL);
+	else
+	{
+		while (current)
+		{
+			index = current->next;
+			while (index)
+			{
+				if (current->value > index->value)
+				{
+					temp = current->value;
+					current->value = index->value;
+					index->value = temp;
+					printf("current>>>>%d\n", current->value);
+					printf("index>>>>%d\n", index->value);
+				}
+				index = index->next;
+			}
+			current = current->next;
+		}
+	}
+	if (!current)
+		printf("empty linkedd list\n");
+	// print_list(current);
+	return (current);
+}
+
+t_list *index_stack(t_list *l, int *dup)
+{
+	t_list	*temp;
+	int	value;
+	int pos;
+	int	i;
+
+	if (!l)
+		return (NULL);
+	i = -1;
+	while(dup[++i])
+	{
+		pos = 0;
+		temp = l;
+		value = temp->value;
+		while(temp)
+		{
+			if (value != dup[i])
+			{
+				pos++;
+				temp = temp->next;
+			}
+			temp->value = pos;
+		}
+	}
+	return (temp);
+}
+
+
+
 int	sort_big_stack(t_all *x)
 {
 	int *dup_stack_a;
 	t_list *temp;
 	int	i;
 
+	// dup stacck a 
 	dup_stack_a = malloc(sizeof(int) * (x->size_a + 1));
 	if (!dup_stack_a)
 		return (0);
@@ -132,6 +199,16 @@ int	sort_big_stack(t_all *x)
 		temp = temp->next;
 	}
 	dup_stack_a[i] = '\0';
+	
+	//sort stack a
+	x->a = sort_linked_list(x->a);
+	print_list(x->a);
+	
+	//indexation
+	x->a = index_stack(x->a, dup_stack_a);
+	print_list(x->a);
+
+	//radix sort
 	
 	
 	return (0);
@@ -207,6 +284,6 @@ int	main(int argc, char **argv)
 
 //ToDo 
 // duplicate stack a -> temp 
-// bubble sort stack a 
+// sort stack a 
 // indexation -> stack a
 // radix sort
