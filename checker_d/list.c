@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:47:29 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/23 10:00:27 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/25 15:21:20 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_list *ft_lstnew(int value)
 	if (head == 0)
 		return (NULL);
 	head->value = value;
+	head->index = 0;
 	head->next = NULL;
 	return (head);
 }

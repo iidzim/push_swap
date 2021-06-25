@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/23 16:52:32 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/25 16:40:21 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct      s_list
 {
     int             value;
+    int             index;
     struct s_list   *next;
 }                   t_list;
 
@@ -71,7 +72,7 @@ int ft_strncmp(char *s1, char *s2, size_t n);
 /*
 ** gnl.c
 */
-int	get_next_line(int fd, char **line, int buff_size);
+int get_next_line(int fd, char **line, int buff_size);
 
 /*
 ** checker.c
@@ -84,10 +85,23 @@ int sorted(t_list *l);
 /*
 ** operation.c - operation2.c
 */
-int exec_op(char *inst, t_all *x, int i);
-void swap(t_all *x, char c, int i);
-void push(t_all *x, char c, int i);
-void rot(t_all *x, char c, int i);
-void reverse_rot(t_all *x, char c, int i);
+int     exec_op(char *inst, t_all *x, int i);
+void    swap(t_all *x, char c, int i);
+void    push(t_all *x, char c, int i);
+void    rot(t_all *x, char c, int i);
+void    reverse_rot(t_all *x, char c, int i);
+
+/*
+** sort_small_stack.c
+*/
+int	sort_5num(t_all *x);
+int	sort_3num(t_all *x);
+
+/*
+** sort_big_stack.c
+*/
+int     *sort_tab(int *tab);
+int     *duplicate_sort_stack_a(t_list *l, int size);
+t_list  *index_stack(t_list *l, int *tab);
 
 #endif
