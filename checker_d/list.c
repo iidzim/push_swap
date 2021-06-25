@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:47:29 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/25 15:21:20 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/25 18:46:48 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ void ft_delete_node(t_list **l)
 	}
 }
 
-void ft_lstadd_val(t_list **l, int val)
+void ft_lstadd_val(t_list **l, int val, int index)
 {
     t_list *node;
     
     if (l && (node = malloc(sizeof(t_list))))
     {
 		node->value = val;
+		node->index = index;
 		node->next = *l;
 		*l = node;
 	}

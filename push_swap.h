@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/25 16:40:21 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/25 21:16:11 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct      s_all
     int             size_a;
     int             size_b;
     int             moves;
+    int             maxbits;
+    int             max_num;
 }                   t_all;
 
 
@@ -50,7 +52,7 @@ char is_dup(int *dup, int n, int i);
 t_list *ft_lstnew(int value);
 void ft_lstadd_front(t_list **list, t_list *new);
 void ft_delete_node(t_list **l);
-void ft_lstadd_val(t_list **l, int val);
+void ft_lstadd_val(t_list **l, int val, int index);
 
 /*
 ** list2.c
@@ -100,8 +102,8 @@ int	sort_3num(t_all *x);
 /*
 ** sort_big_stack.c
 */
-int     *sort_tab(int *tab);
-int     *duplicate_sort_stack_a(t_list *l, int size);
+int     *sort_tab(int *tab, t_all *x);
+int     *duplicate_sort_stack_a(t_all *x, int size);
 t_list  *index_stack(t_list *l, int *tab);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/25 16:43:46 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/25 19:43:27 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int valid_nbr(int argc, char **argv, t_all *x)
 	dup[i - 1] = '\0';
 	x->size_a = argc - 1;
 	fill_list(dup, x);
-	print_list(x->a);
 	free(dup);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 18:25:20 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/24 11:48:55 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/25 18:48:09 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void help_swap(t_list **l)
 {
-    t_list *tmp;
-    int temp;
+    t_list  *tmp;
+    int     temp;
+    int     index;
     
     tmp = (*l);
     if (tmp != NULL && tmp->next != NULL)
@@ -23,6 +24,12 @@ void help_swap(t_list **l)
         temp = tmp->value;
         tmp->value = tmp->next->value;
         tmp->next->value = temp;
+        if (tmp->index != 0)
+        {
+            index = tmp->index;
+            tmp->index = tmp->next->index;
+            tmp->next->index = index;
+        }
     }
 }
 
@@ -61,14 +68,14 @@ void push(t_all *x, char c, int i)
     tmp_b = x->b;
     if (c == 'a' && tmp_b != NULL)
     {
-        ft_lstadd_val(&x->a, tmp_b->value);
+        ft_lstadd_val(&x->a, tmp_b->value, tmp_b->index);
         ft_delete_node(&x->b);
         if (i == 1)
             write(1, "pa\n", 3);
     }
     else if (c == 'b' && tmp_a != NULL)
     {
-        ft_lstadd_val(&x->b, tmp_a->value);
+        ft_lstadd_val(&x->b, tmp_a->value, tmp_a->index);
         ft_delete_node(&x->a);
         if (i == 1)
             write(1, "pb\n", 3);
