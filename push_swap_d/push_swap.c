@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:51:15 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/25 21:18:41 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/25 21:55:32 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ t_all	*radix_sort(t_all *x)
 	int i = 0;
 
 	shift = 0;
-	temp_a = x->a;
 	while (shift < x->maxbits)
-	{	
+	{
+		temp_a = x->a;
+		i = 0;
+		printf("==============================shift = %d -- i = %d\n", shift, i);
 		while (temp_a && i <= x->size_a)// && shift <= x->maxbits)
 		{
 			i += 1;
@@ -89,9 +91,9 @@ t_all	*radix_sort(t_all *x)
 				rot(x, 'a', 1);
 			temp_a = x->a;
 			temp_a = temp_a->next;
-			printf("list num %d  -  shift = %d\n", i, shift);
-			print_list(x->a);
+			// printf("list num %d  -  shift = %d\n", i, shift);
 		}
+		print_list(x->a);
 		printf("STACK B\n");
 		print_list(x->b);
 		temp_b = x->b;
@@ -102,35 +104,15 @@ t_all	*radix_sort(t_all *x)
 			temp_b = temp_b->next;
 		}
 		push(x, 'a', 1);
+		printf("final result num %d\n", shift);
+		print_list(x->a);
 		shift += 1;
 	}
-	printf("STACK A>>>\n");print_list(x->a);
-	printf("STACK B>>>\n");print_list(x->b);
+	printf("shift = %d\n", shift);
+	// printf("STACK A>>>\n");print_list(x->a);
+	// printf("STACK B>>>\n");print_list(x->b);
 	printf("out\n");
 	return (x);
-}
-
-void	get_maxbits(t_all *x, int i)
-{
-	int num;
-	t_list *temp;
-
-	temp = x->a;
-	num = 0;
-	while (temp->next)
-	{
-		if (temp->value == i)
-		{
-			num = temp->index;
-			break;
-		}
-		temp = temp->next;
-	}
-	x->maxbits = 0;
-	while ((num>>(x->maxbits))&1)
-	{
-		
-	}
 }
 
 int	sort_big_stack(t_all *x)
@@ -141,7 +123,7 @@ int	sort_big_stack(t_all *x)
 	//indexation
 	x->a = index_stack(x->a, dup_stack_a);
 	print_list(x->a);
-	get_maxbits(x->a, x->max_num);
+	get_maxbits(x, x->max_num);
 	//radix sort
 	x = radix_sort(x);
 	// print_list(x->a);
@@ -175,7 +157,12 @@ int	main(int argc, char **argv)
 	// // if (((num>>maxbits)&1) == 1)
 	// 	// printf("1\n");
 	// // printf("max_bits = %d\n", maxbits);
-	// printf("num = %d\n", num>>shift);
+	// int num =6;
+	// int shift = 1;
+	// while (num>>shift != 0)
+	// 	shift++;
+	// printf("shift = %d\n", shift);
+	// printf("%d\n", 6>>1);
 	// return (0);
 
 	if (argc >= 2)

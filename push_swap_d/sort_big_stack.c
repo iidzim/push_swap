@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 16:27:57 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/25 21:16:04 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/25 21:33:33 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,24 @@ t_list	*index_stack(t_list *l, int *tab)
 	return (l);
 }
 
+void	get_maxbits(t_all *x, int i)
+{
+	int num;
+	t_list *temp;
 
+	temp = x->a;
+	num = 0;
+	while (temp->next)
+	{
+		if (temp->value == i)
+		{
+			num = temp->index;
+			break;
+		}
+		temp = temp->next;
+	}
+	x->maxbits = 1;
+	while (num>>(x->maxbits) != 0)
+		x->maxbits++;
+	printf("x->maxbits = %d\n", x->maxbits);
+}

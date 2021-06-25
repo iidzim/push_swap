@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/25 21:16:11 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/25 21:33:42 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ int	sort_3num(t_all *x);
 int     *sort_tab(int *tab, t_all *x);
 int     *duplicate_sort_stack_a(t_all *x, int size);
 t_list  *index_stack(t_list *l, int *tab);
+void	get_maxbits(t_all *x, int i);
 
 #endif
