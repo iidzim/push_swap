@@ -6,17 +6,11 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 15:29:53 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 17:30:28 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-int	print_err(void)
-{
-	write(2, "Error\n", 6);
-	exit(1);
-}
 
 void	fill_list(int *dup, t_all *x)
 {
@@ -91,20 +85,20 @@ int	*sort_tab(int *tab, t_all *x)
 	return (tab);
 }
 
-void print_list(t_list *l)
-{
-	t_list *temp;
+// void print_list(t_list *l)
+// {
+// 	t_list *temp;
 
-	temp = l;
+// 	temp = l;
 
-	printf("*****list******\n");
-	while(temp)
-	{
-		printf("value = %d  -  index = %d\n", temp->value, temp->index);
-		temp = temp->next;
-	}
-	printf("**********\n\n");
-}
+// 	printf("*****list******\n");
+// 	while(temp)
+// 	{
+// 		printf("value = %d  -  index = %d\n", temp->value, temp->index);
+// 		temp = temp->next;
+// 	}
+// 	printf("**********\n\n");
+// }
 
 //? t_list	*sort_linked_list(t_list *l)
 //? {

@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 13:28:31 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 17:26:13 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ int	get_next_inst(t_all *x)
 		if (valid_instruction(line))
 			exec_op(line, x, 0);
 		else
-			print_err();
+		{
+			write(2, "Error\n", 6);
+			free(line);
+			return (1);
+		}
 		free(line);
 	}
 	return (0);
@@ -67,13 +71,13 @@ int	get_next_inst(t_all *x)
 
 // 	if (argc >= 2)
 // 	{
-// 		valid_nbr(argc, argv, &x);
-// 		get_next_inst(&x);
+// 		if (!valid_nbr(argc, argv, &x))
+// 			get_next_inst(&x);
 // 	}
 // 	else if (argc == 1)
 // 		return (0);
 // 	else
-// 		print_err();
+// 		write(2, "Error\n", 6);
 // 	system("leaks checker");
 // 	return (0);
 // }

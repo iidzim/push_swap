@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:47:29 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 16:44:43 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 17:27:09 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	ft_lstadd_val(t_list **l, int val, int index)
 		node->index = index;
 		node->next = *l;
 		*l = node;
-		
 	}
 }
 

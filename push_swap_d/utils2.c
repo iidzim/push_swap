@@ -6,16 +6,20 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:49:05 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 12:38:43 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 17:29:11 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	overflow(long n)
+int	overflow(long n, int *dup)
 {
 	if (n > INT32_MAX || n < INT32_MIN)
-		print_err();
+	{
+		write(2, "Error\n", 6);
+		free(dup);
+		exit(1);
+	}
 	return ((int)n);
 }
 
@@ -58,7 +62,10 @@ long	ft_atoi(char *s)
 		s++;
 	}
 	if (!ft_isdigit(*s) && *s != '\0')
-		print_err();
+	{
+		write(2, "Error\n", 6);
+		return (2147483648);
+	}
 	return (x * signe);
 }
 
@@ -72,11 +79,12 @@ int	valid_nbr(int argc, char **argv, t_all *x)
 	i = 0;
 	while (argc > ++i)
 	{
-		n = overflow(ft_atoi(argv[i]));
+		n = overflow(ft_atoi(argv[i]), dup);
 		if (is_dup(dup, n, i))
 		{
 			free(dup);
-			print_err();
+			write(2, "Error\n", 6);
+			return (1);
 		}
 		dup[i - 1] = n;
 	}

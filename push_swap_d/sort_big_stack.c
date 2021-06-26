@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 16:27:57 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 15:30:39 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 16:54:46 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	sort_big_stack(t_all *x)
 
 	dup_stack_a = duplicate_sort_stack_a(x, x->size_a);
 	x->a = index_stack(x->a, dup_stack_a);
+	free(dup_stack_a);
 	get_maxbits(x, x->max_num);
 	x = radix_sort(x);
 }
