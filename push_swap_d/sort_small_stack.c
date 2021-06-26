@@ -6,27 +6,11 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 16:14:59 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/25 16:22:46 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 12:46:20 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-int	find_max_min(t_list *a, int i)
-{
-	t_list	*temp;
-	int		value;
-
-	temp = a;
-	value = temp->value;
-	while (temp)
-	{
-		if ((value < temp->value && i == 1) || (value > temp->value && i == 2))
-			value = temp->value;
-		temp = temp->next;
-	}
-	return (value);
-}
 
 void	push_min_to_stack(t_all *x, int min, char c)
 {
@@ -99,4 +83,17 @@ int	sort_5num(t_all *x)
 	push(x, 'a', 1);
 	push(x, 'a', 1);
 	return (x->moves);
+}
+
+void	sort_small_stack(t_all *x)
+{
+	if (x->size_a == 2)
+	{
+		if (x->a->value > x->a->next->value)
+			swap(x, 'a', 1);
+	}
+	else if (x->size_a == 3)
+		sort_3num(x);
+	else
+		sort_5num(x);
 }

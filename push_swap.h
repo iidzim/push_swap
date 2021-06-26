@@ -6,105 +6,81 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/25 21:33:42 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 13:27:04 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-#define CHECKER_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <string.h>
+# include <stdlib.h>
+# include "checker.h"
 
-typedef struct      s_list
+typedef struct s_list
 {
-    int             value;
-    int             index;
-    struct s_list   *next;
-}                   t_list;
+	int				value;
+	int				index;
+	struct s_list	*next;
+}				t_list;
 
-typedef struct      s_all
+typedef struct s_all
 {
-    t_list          *a;
-    t_list          *b;
-    int             size_a;
-    int             size_b;
-    int             moves;
-    int             maxbits;
-    int             max_num;
-}                   t_all;
+	t_list			*a;
+	t_list			*b;
+	int				size_a;
+	int				size_b;
+	int				moves;
+	int				maxbits;
+	int				max_num;
+}				t_all;
 
 
-/*
-** utils.c
-*/
-int print_err(void);
-int ft_isdigit(char c);
-long ft_atoi(char *s);
-int overflow(long n);
-char is_dup(int *dup, int n, int i);
 
 /*
 ** list.c
 */
-t_list *ft_lstnew(int value);
-void ft_lstadd_front(t_list **list, t_list *new);
-void ft_delete_node(t_list **l);
-void ft_lstadd_val(t_list **l, int val, int index);
+t_list	*ft_lstnew(int value);
+void	ft_lstadd_front(t_list **list, t_list *new);
+void	ft_delete_node(t_list **l);
+void	ft_lstadd_val(t_list **l, int val, int index);
+void	ft_freelst(t_list *instructions);
 
 /*
-** list2.c
+** utils.c
 */
-int list_size(t_list *l);
-void ft_freelst(t_list *instructions);
-void fill_list(int *dup, t_all *x);
-void print_list(t_list *l);
+int		print_err(void);
+void	fill_list(int *dup, t_all *x);
+int		sorted(t_list *l);
+int		find_max_min(t_list *a, int i);
+int		*sort_tab(int *tab, t_all *x);
+//void print_list(t_list *l);
 
 /*
-** gnl_utils.c
+** utils2.c
 */
-int ft_strlen(char *s);
-char *ft_strdup(char *str);
-char *ft_substr(char *s, int start, size_t len);
-char *ft_strjoin(char *s1, char *s2);
-int ft_strncmp(char *s1, char *s2, size_t n);
-
-/*
-** gnl.c
-*/
-int get_next_line(int fd, char **line, int buff_size);
-
-/*
-** checker.c
-*/
-int valid_nbr(int argc, char **argv, t_all *x);
-int valid_instruction(char *inst);
-int get_next_inst(t_all *x);
-int sorted(t_list *l);
+int		valid_nbr(int argc, char **argv, t_all *x);
 
 /*
 ** operation.c - operation2.c
 */
-int     exec_op(char *inst, t_all *x, int i);
-void    swap(t_all *x, char c, int i);
-void    push(t_all *x, char c, int i);
-void    rot(t_all *x, char c, int i);
-void    reverse_rot(t_all *x, char c, int i);
+int		exec_op(char *inst, t_all *x, int i);
+void	swap(t_all *x, char c, int i);
+void	push(t_all *x, char c, int i);
+void	rot(t_all *x, char c, int i);
+void	reverse_rot(t_all *x, char c, int i);
+void	push_b_to_a(t_all *x);
 
 /*
 ** sort_small_stack.c
 */
-int	sort_5num(t_all *x);
-int	sort_3num(t_all *x);
+void	sort_small_stack(t_all *x);
 
 /*
 ** sort_big_stack.c
 */
-int     *sort_tab(int *tab, t_all *x);
-int     *duplicate_sort_stack_a(t_all *x, int size);
-t_list  *index_stack(t_list *l, int *tab);
-void	get_maxbits(t_all *x, int i);
+void	sort_big_stack(t_all *x);
 
 #endif

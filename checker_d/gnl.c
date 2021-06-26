@@ -6,15 +6,15 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:53:46 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/23 10:50:09 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 13:25:33 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int		ft_find(char *str)
+int	ft_find(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -26,14 +26,14 @@ int		ft_find(char *str)
 	return (0);
 }
 
-int		ft_free(char **s1, int ret)
+int	ft_free(char **s1, int ret)
 {
 	free(*s1);
 	*s1 = NULL;
 	return (ret);
 }
 
-int		ft_return(char **str, char **line)
+int	ft_return(char **str, char **line)
 {
 	int		k;
 	char	*ptr;
@@ -52,20 +52,20 @@ int		ft_return(char **str, char **line)
 	return (ft_free(str, 0));
 }
 
-int		get_next_line(int fd, char **line, int buff_size)
+int	get_next_line(int fd, char **line, int buff_size)
 {
 	ssize_t		r;
-	static char *str;
+	static char	*str;
 	char		*ptr;
 	char		*buff;
 
-	r = 0;
-	if (buff_size < 0 || !(buff = malloc(sizeof(char) * buff_size + 1)) ||
-		fd < 0 || !line)
+	buff = malloc(sizeof(char) * buff_size + 1);
+	if (buff_size < 0 || !buff || fd < 0 || !line)
 		return (-1);
 	if (!str)
 		str = ft_strdup("");
-	while ((r = read(fd, buff, buff_size)) > 0)
+	r = read(fd, buff, buff_size);
+	while (r > 0)
 	{
 		buff[r] = '\0';
 		ptr = str;
@@ -73,6 +73,7 @@ int		get_next_line(int fd, char **line, int buff_size)
 		ft_free(&ptr, 0);
 		if (ft_find(str))
 			break ;
+		r = read(fd, buff, buff_size);
 	}
 	ft_free(&buff, 0);
 	if (r == -1)

@@ -6,15 +6,15 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:49:11 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/23 10:00:27 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 12:23:45 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -25,8 +25,8 @@ int ft_strlen(char *s)
 char	*ft_strdup(char *str)
 {
 	int		i;
-	char	*p;
 	int		size;
+	char	*p;
 
 	i = 0;
 	size = ft_strlen(str);
@@ -93,7 +93,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (NULL);
 }
 
-int		ft_strncmp(char *s1, char *s2, size_t n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	size_t	i;
 	int		diff;

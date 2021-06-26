@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:38:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/24 20:28:29 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 12:43:09 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** The first element becomes the last one
 */
 
-void help_rot(t_list **l)
+void	help_rot(t_list **l)
 {
 	t_list	*first;
 	t_list	*last;
@@ -26,7 +26,7 @@ void help_rot(t_list **l)
 	{
 		first = *l;
 		last = *l;
-		while(last->next != NULL)
+		while (last->next != NULL)
 			last = last->next;
 		*l = first->next;
 		first->next = NULL;
@@ -36,8 +36,7 @@ void help_rot(t_list **l)
 		return ;
 }
 
-
-void rot(t_all *x, char c, int i)
+void	rot(t_all *x, char c, int i)
 {
 	if (c == 'a')
 	{
@@ -69,17 +68,17 @@ void rot(t_all *x, char c, int i)
 **  The last element becomes the first one.
 */
 
-void help_rrot(t_list **l)
+void	help_rrot(t_list **l)
 {
-	t_list *first;
-	t_list *last;
-	t_list *latest;
+	t_list	*first;
+	t_list	*last;
+	t_list	*latest;
 
 	if ((*l) != NULL && (*l)->next != NULL)
 	{
 		first = *l;
 		last = *l;
-		while(last->next->next != NULL)
+		while (last->next->next != NULL)
 			last = last->next;
 		latest = last->next;
 		latest->next = first;
