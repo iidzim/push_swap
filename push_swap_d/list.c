@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:47:29 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 12:59:16 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 16:44:43 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ void	ft_lstadd_val(t_list **l, int val, int index)
 	t_list	*node;
 
 	node = malloc(sizeof(t_list));
-	if (l && !node)
+	if (l && node)
 	{
 		node->value = val;
 		node->index = index;
 		node->next = *l;
 		*l = node;
+		
 	}
 }
 

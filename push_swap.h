@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 13:27:04 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 15:29:23 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	fill_list(int *dup, t_all *x);
 int		sorted(t_list *l);
 int		find_max_min(t_list *a, int i);
 int		*sort_tab(int *tab, t_all *x);
-//void print_list(t_list *l);
+void print_list(t_list *l);
 
 /*
 ** utils2.c

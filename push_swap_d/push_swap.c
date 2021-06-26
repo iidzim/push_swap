@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:51:15 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 13:28:56 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 16:47:29 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_all	x;
 
+	x.b = NULL;
 	if (argc >= 2)
 	{
 		valid_nbr(argc, argv, &x);
@@ -28,6 +29,12 @@ int	main(int argc, char **argv)
 			else
 				sort_big_stack(&x);
 			printf(">>>moves = %d\n", x.moves);
+			if (sorted(x.a))
+				printf("OK\n");
+			else
+				printf("KO\n");		
+			// print_list(x.a);
+			// printf("end\n");
 		}
 		ft_freelst(x.a);
 		ft_freelst(x.b);

@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 12:54:34 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 15:29:53 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,20 +91,20 @@ int	*sort_tab(int *tab, t_all *x)
 	return (tab);
 }
 
-//* void print_list(t_list *l)
-//* {
-//* 	t_list *temp;
-//* 
-//* 	temp = l;
-//* 
-//* 	printf("*****list******\n");
-//* 	while(temp)
-//* 	{
-//* 		printf("value = %d  -  index = %d\n", temp->value, temp->index);
-//* 		temp = temp->next;
-//* 	}
-//* 	printf("**********\n\n");
-//* }
+void print_list(t_list *l)
+{
+	t_list *temp;
+
+	temp = l;
+
+	printf("*****list******\n");
+	while(temp)
+	{
+		printf("value = %d  -  index = %d\n", temp->value, temp->index);
+		temp = temp->next;
+	}
+	printf("**********\n\n");
+}
 
 //? t_list	*sort_linked_list(t_list *l)
 //? {

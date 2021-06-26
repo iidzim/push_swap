@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 16:14:59 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 12:46:20 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/26 16:48:40 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	push_min_to_stack(t_all *x, int min, char c)
 	if (cpt <= (x->size_a / 2))
 	{
 		while (cpt-- > 0)
-			rot(x, 'a', 1);
+			rot(x, c, 1);
 	}
 	else
 	{
 		while ((--cpt) - x->size_a / 2 > 0)
-			reverse_rot(x, 'a', 1);
+			reverse_rot(x, c, 1);
 	}
-	push(x, c, 1);
+	push(x, 'b', 1);
 }
 
 int	operations_3num(t_all *x, int max, int top, int middle)
@@ -49,22 +49,19 @@ int	operations_3num(t_all *x, int max, int top, int middle)
 	middle = x->a->next->value;
 	if (top > middle)
 		swap(x, 'a', 1);
-	return (0);
+	return (x->moves);
 }
 
 int	sort_3num(t_all *x)
 {
 	int	top;
 	int	middle;
-	int	bottom;
 	int	max;
 
 	top = x->a->value;
 	middle = x->a->next->value;
-	bottom = x->a->next->next->value;
 	max = find_max_min(x->a, 1);
-	operations_3num(x, max, top, middle);
-	return (x->moves);
+	return (operations_3num(x, max, top, middle));
 }
 
 int	sort_5num(t_all *x)
@@ -72,16 +69,20 @@ int	sort_5num(t_all *x)
 	int	min1;
 	int	min2;
 
+	print_list(x->a);
+	// printf("STACK_B\n");print_list(x->b);
 	if (x->size_a == 5)
 	{
 		min1 = find_max_min(x->a, 2);
-		push_min_to_stack(x, min1, 'b');
+		push_min_to_stack(x, min1, 'a');
 	}
 	min2 = find_max_min(x->a, 2);
-	push_min_to_stack(x, min2, 'b');
-	sort_3num(x);
+	push_min_to_stack(x, min2, 'a');
+
+	x->moves +=  sort_3num(x);
 	push(x, 'a', 1);
 	push(x, 'a', 1);
+	// printf("print moves = %d\n", x->moves);
 	return (x->moves);
 }
 
@@ -93,7 +94,7 @@ void	sort_small_stack(t_all *x)
 			swap(x, 'a', 1);
 	}
 	else if (x->size_a == 3)
-		sort_3num(x);
+		x->moves = sort_3num(x);
 	else
-		sort_5num(x);
+		x->moves = sort_5num(x);
 }
