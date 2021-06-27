@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/27 16:41:06 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/27 17:45:13 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	get_next_inst(t_all *x)
 	{
 		if (valid_instruction(line))
 			exec_op(line, x, 0);
+		else if (!strcmp(line,"\0"))
+			break ;
 		else
 		{
 			write(2, "Error\n", 6);
