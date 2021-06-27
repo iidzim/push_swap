@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/27 17:45:13 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/27 21:55:45 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ int	main(int argc, char **argv)
 		return (0);
 	else
 		write(2, "Error\n", 6);
-	system("leaks checker");
+	// system("leaks checker");
 	return (0);
 }

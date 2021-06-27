@@ -6,7 +6,7 @@
 #    By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/27 14:24:43 by iidzim            #+#    #+#              #
-#    Updated: 2021/06/27 17:49:34 by iidzim           ###   ########.fr        #
+#    Updated: 2021/06/27 21:55:26 by iidzim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,13 @@ SRCB			=	./checker_d/checker.c\
 					./checker_d/gnl.c\
 					
 
-SRC				=	./checker_d/ft_split.c\
-					./checker_d/gnl_utils.c\
-					./push_swap_d/operation.c\
-					./push_swap_d/operation2.c\
-					./push_swap_d/list.c\
-					./push_swap_d/utils.c\
-					./push_swap_d/utils2.c
+SRC				=	./utils_d/ft_split.c\
+					./utils_d/gnl_utils.c\
+					./utils_d/operation.c\
+					./utils_d/operation2.c\
+					./utils_d/list.c\
+					./utils_d/utils.c\
+					./utils_d/utils2.c
 
 OBJS			=	$(SRCS:.c=.o)
 
@@ -36,7 +36,7 @@ OBJB			=	$(SRCB:.c=.o)
 OBJ				=	$(SRC:.c=.o)
 
 CC				=	gcc
-FLAGS			=	-Wall -Wextra -Werror -fsanitize=address
+FLAGS			=	-Wall -Wextra -Werror
 RM				=	rm -f
 
 all:			$(NAME1)
