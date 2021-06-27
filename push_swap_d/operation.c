@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 18:25:20 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 16:44:51 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/27 16:24:48 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,7 @@ void	push(t_all *x, char c, int i)
 	}
 	else if (c == 'b' && tmp_a != NULL)
 	{
-		if (x->b == NULL)
-		{
-			x->b = malloc(sizeof(t_list));
-			x->b->value = tmp_a->value;
-			x->b->index = tmp_a->index;
-			x->b->next = NULL;
-		}
-		else
-			ft_lstadd_val(&x->b, x->a->value, x->a->index);
+		ft_lstadd_val(&x->b, x->a->value, x->a->index);
 		ft_delete_node(&x->a);
 		if (i == 1)
 			write(1, "pb\n", 3);

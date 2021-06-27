@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 17:30:28 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/27 16:16:48 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	sorted(t_list *l)
 		}
 		return (1);
 	}
+	if (l != NULL && l->next == NULL)
+		return (1);
 	return (0);
 }
 
@@ -99,35 +101,3 @@ int	*sort_tab(int *tab, t_all *x)
 // 	}
 // 	printf("**********\n\n");
 // }
-
-//? t_list	*sort_linked_list(t_list *l)
-//? {
-//? 	t_list	*index;
-//? 	t_list	*current;
-//? 	int		temp;
-//? 	int i = 0;
-//?
-//? 	current = l;
-//? 	index = NULL;
-//? 	if (!current)
-//? 		return (NULL);
-//? 	while (current && current->next)
-//? 	{
-//? 		i += 1;
-//? 		index = current->next;
-//? 		while (index)
-//? 		{
-//? 			if (current->value > index->value)
-//? 			{
-//? 				temp = current->value;
-//? 				current->value = index->value;
-//? 				index->value = temp;
-//? 			}
-//? 			index = index->next;
-//? 		}
-//? 		current = current->next;
-//? 	}
-//? 	printf("sorted stack\n");
-//? 	print_list(l);
-//? 	return (l);
-//? }
