@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 12:26:11 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 13:08:38 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,11 @@ int	*sort_tab(int *tab, t_all *x)
 	}
 	x->max_num = tab[x->size_a - 1];
 	return (tab);
+}
+
+int	ft_isdigit(char c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
 }

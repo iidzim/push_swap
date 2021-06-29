@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 12:10:56 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 12:31:32 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 13:21:03 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_strcmp(char *s1, char *s2);
 int		get_next_line(char **line);
 char	**ft_split(char *s, char c);
+int		valid_instruction(char *inst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:53:46 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 12:27:09 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 13:20:49 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,37 @@ int	get_next_line(char **line)
 	}
 	free(buffer);
 	return (flag);
+}
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 11)
+	{
+		free(tab[i]);
+		tab[i] = NULL;
+	}
+	free(tab);
+	tab = NULL;
+}
+
+int	valid_instruction(char *inst)
+{
+	int		i;
+	char	**tab;
+
+	tab = ft_split("sa sb ss pa pb ra rb rr rra rrb rrr", 32);
+	i = -1;
+	while (++i < 11)
+	{
+		if (!ft_strcmp(inst, tab[i]))
+		{
+			free_tab(tab);
+			return (1);
+		}
+	}
+	free_tab(tab);
+	return (0);
 }

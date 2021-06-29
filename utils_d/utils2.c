@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:49:05 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 12:35:26 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 13:15:24 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,6 @@ int	overflow(long n, int *dup)
 		exit(1);
 	}
 	return ((int)n);
-}
-
-int	ft_isdigit(char c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
 }
 
 long	ft_atoi(char *s)
@@ -76,6 +69,17 @@ int	check_dup(int *dup, int argc)
 	return (1);
 }
 
+int	check_double_overloaded(char **argv, int i, int *dup)
+{
+	if (ft_strlen(argv[i + 1]) > 11)
+	{
+		write(2, "Error\n", 6);
+		free(dup);
+		return (1);
+	}
+	return (0);
+}
+
 int	valid_nbr(int argc, char **argv, t_all *x)
 {
 	int	i;
@@ -86,12 +90,8 @@ int	valid_nbr(int argc, char **argv, t_all *x)
 	i = -1;
 	while (argc - 1 > ++i)
 	{
-		if (ft_strlen(argv[i + 1]) > 11)
-		{
-			write(2, "Error\n", 6);
-			free(dup);
+		if (check_double_overloaded(argv, i, dup))
 			return (1);
-		}
 		n = overflow(ft_atoi(argv[i + 1]), dup);
 		dup[i] = n;
 	}
