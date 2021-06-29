@@ -6,77 +6,54 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:53:46 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 11:37:55 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 12:27:09 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../checker.h"
 
-int	ft_find(char *str)
+static char	*ft_join(char *s, char c)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i])
+		i++;
+	str = (char *)malloc(i + 2);
+	if (str == NULL)
+		return (0);
+	i = 0;
+	while (s[i])
 	{
-		if (str[i] == '\n')
-			return (1);
+		str[i] = s[i];
 		i++;
 	}
-	return (0);
+	str[i] = c;
+	str[i + 1] = '\0';
+	free(s);
+	return (str);
 }
 
-int	ft_free(char **s1, int ret)
+int	get_next_line(char **line)
 {
-	free(*s1);
-	*s1 = NULL;
-	return (ret);
-}
+	char	*buffer;
+	int		flag;
 
-int	ft_return(char **str, char **line)
-{
-	int		k;
-	char	*ptr;
-
-	k = 0;
-	if (ft_find(*str))
+	buffer = (char *)malloc(2);
+	flag = read(0, buffer, 1);
+	*line = (char *)malloc(1);
+	if (!line || !(*line) || !buffer)
+		return (-1);
+	*line[0] = '\0';
+	while (flag > 0)
 	{
-		while ((*str)[k] != '\n')
-			k++;
-		*line = ft_substr(*str, 0, k);
-		ptr = *str;
-		*str = ft_strdup(*str + k + 1);
-		return (ft_free(&ptr, 1));
+		buffer[1] = 0;
+		if (buffer[0] == '\n')
+			break ;
+		*line = ft_join(*line, buffer[0]);
+		flag = read(0, buffer, 1);
 	}
-	*line = ft_strdup(*str);
-	return (ft_free(str, 0));
+	free(buffer);
+	return (flag);
 }
-
-// int	get_next_line(int fd, char **line, int buff_size)
-// {
-// 	ssize_t		r;
-// 	static char	*str;
-// 	char		*ptr;
-// 	char		*buff;
-
-// 	buff = malloc(sizeof(char) * buff_size + 1);
-// 	if (buff_size < 0 || !buff || fd < 0 || !line)
-// 		return (-1);
-// 	if (!str)
-// 		str = ft_strdup("");
-// 	r = read(fd, buff, buff_size);
-// 	while (r > 0)
-// 	{
-// 		buff[r] = '\0';
-// 		ptr = str;
-// 		str = ft_strjoin(str, buff);
-// 		ft_free(&ptr, 0);
-// 		if (ft_find(str))
-// 			break ;
-// 		r = read(fd, buff, buff_size);
-// 	}
-// 	ft_free(&buff, 0);
-// 	if (r == -1)
-// 		return (ft_free(&str, -1));
-// 	return (ft_return(&str, line));
-// }

@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 12:18:01 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 12:50:44 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	while(++i < 11)
+	while (++i < 11)
 	{
 		free(tab[i]);
-		tab[i] = NULL;	
+		tab[i] = NULL;
 	}
 	free(tab);
 	tab = NULL;
@@ -35,7 +35,7 @@ int	valid_instruction(char *inst)
 	i = -1;
 	while (++i < 11)
 	{
-		if (!strcmp(inst, tab[i]))
+		if (!ft_strcmp(inst, tab[i]))
 		{
 			free_tab(tab);
 			return (1);
@@ -45,64 +45,45 @@ int	valid_instruction(char *inst)
 	return (0);
 }
 
-static    char    *ft_join(char *s, char c)
-{
-    int        i;
-    char    *str;
-
-    i = 0;
-    while (s[i])
-        i++;
-    str = (char *)malloc(i + 2);
-    if (str == NULL)
-        return (0);
-    i = 0;
-    while (s[i])
-    {
-        str[i] = s[i];
-        i++;
-    }
-    str[i] = c;
-    str[i + 1] = '\0';
-    free(s);
-    return (str);
-}
-
-int    get_next_line(char **line)
-{
-    char    *buffer;
-    int        flag;
-
-    buffer = (char *)malloc(2);
-    flag = read(0, buffer, 1);
-    *line = (char *)malloc(1);
-    if (!line || !(*line) || !buffer)
-        return (-1);
-    *line[0] = '\0';
-    while (flag > 0)
-    {
-        buffer[1] = 0;
-        if (buffer[0] == '\n')
-            break ;
-        *line = ft_join(*line, buffer[0]);
-        flag = read(0, buffer, 1);
-    }
-    free(buffer);
-    return (flag);
-}
-
 int	print_err(char *str)
 {	
 	write(2, "Error\n", 6);
 	free(str);
 	exit (1);
 }
+
+int	helper(t_all *x, char *str, char *buff, int i)
+{
+	char	*temp;
+
+	if (i == 0)
+	{
+		if (buff[0])
+		{
+			if (valid_instruction(str))
+				exec_op(str, x, 0);
+			else
+				print_err(str);
+		}
+		free(str);
+	}
+	if (i == 1)
+	{
+		temp = str;
+		str = ft_strjoin(str, buff);
+		free (temp);
+		if (valid_instruction(str))
+			exec_op(str, x, 0);
+	}
+	return (i);
+}
+
 int	get_next_inst(t_all *x)
 {
 	char	*buff;
-	char	*pfree;
-	int		new;
 	char	*str;
+	char	*temp;
+	int		new;
 
 	new = 1;
 	while (get_next_line(&buff) > 0)
@@ -112,9 +93,9 @@ int	get_next_inst(t_all *x)
 		if (buff[0] != '\0')
 		{
 			new = 0;
-			pfree = str;
+			temp = str;
 			str = ft_strjoin(str, &buff[0]);
-			free (pfree);
+			free (temp);
 			if (valid_instruction(str))
 				exec_op(str, x, 0);
 		}
@@ -129,10 +110,11 @@ int	get_next_inst(t_all *x)
 		if (valid_instruction(buff))
 			exec_op(buff, x, 0);
 		else
-			print_err(buff);	
+			print_err(buff);
 	}
 	free(buff);
 	return (0);
+	// return (helper(x, buff, NULL, 0));
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 15:49:11 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/27 12:44:58 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 12:29:31 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (NULL);
 }
 
-int	ft_strncmp(char *s1, char *s2, size_t n)
+int	ft_strcmp(char *s1, char *s2)
 {
-	size_t	i;
-	int		diff;
-
-	i = 0;
-	diff = 0;
-	while (n - 1 > i && s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
-		i++;
-	diff = s1[i] - s2[i];
-	return (diff);
+	while ((*s1 && *s2) && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
