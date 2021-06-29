@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 15:59:03 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 16:17:06 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ int	helper(t_data *m, t_all *x)
 		if (valid_instruction(m->buff))
 			exec_op(m->buff, x, 0);
 		else
+		{
 			print_err(m->buff);
+			free(m->buff);
+			return (1);
+		}
 	}
 	free(m->buff);
 	return (0);
@@ -49,6 +53,8 @@ int	get_next_inst(t_all *x)
 			free (m.temp);
 			if (valid_instruction(m.str))
 				exec_op(m.str, x, 0);
+			else
+				print_err(m.str);
 		}
 		else
 			print_err(m.str);
@@ -66,11 +72,13 @@ int	main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		if (!valid_nbr(argc, argv, &x))
+		{
 			get_next_inst(&x);
-		if (sorted(&x))
-			write(1, "OK\n", 3);
-		else
-			write(1, "KO\n", 3);
+			if (sorted(&x))
+				write(1, "OK\n", 3);
+			else
+				write(1, "KO\n", 3);
+		}
 		ft_freelst(x.a);
 		ft_freelst(x.b);
 	}
@@ -78,6 +86,5 @@ int	main(int argc, char **argv)
 		return (0);
 	else
 		write(2, "Error\n", 6);
-	system("leaks checker");
 	return (0);
 }
