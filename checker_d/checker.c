@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 13:27:19 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 15:59:03 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,94 +19,45 @@ int	print_err(char *str)
 	exit (1);
 }
 
-int	get_next_inst(t_all *x)
+int	helper(t_data *m, t_all *x)
 {
-	char	*buff;
-	char	*str;
-	char	*temp;
-	int		new;
-
-	new = 1;
-	while (get_next_line(&buff) > 0)
+	if (m->buff[0])
 	{
-		if (new)
-			str = ft_strdup("");
-		if (buff[0] != '\0')
-		{
-			new = 0;
-			temp = str;
-			str = ft_strjoin(str, &buff[0]);
-			free (temp);
-			if (valid_instruction(str))
-				exec_op(str, x, 0);
-		}
+		if (valid_instruction(m->buff))
+			exec_op(m->buff, x, 0);
 		else
-			print_err(str);
-		new = 1;
-		free(str);
-		free(buff);
+			print_err(m->buff);
 	}
-	if (buff[0])
-	{
-		if (valid_instruction(buff))
-			exec_op(buff, x, 0);
-		else
-			print_err(buff);
-	}
-	free(buff);
+	free(m->buff);
 	return (0);
 }
 
-// int	helper(t_all *x, char *str, char *buff, int i)
-// {
-// 	char	*temp;
+int	get_next_inst(t_all *x)
+{
+	t_data	m;
 
-// 	if (i == 0)
-// 	{
-// 		if (str[0])
-// 		{
-// 			if (valid_instruction(str))
-// 				exec_op(str, x, 0);
-// 			else
-// 				print_err(str);
-// 		}
-// 		free(str);
-// 	}
-// 	if (i == 1)
-// 	{
-// 		temp = str;
-// 		str = ft_strjoin(str, buff);
-// 		free (temp);
-// 		if (valid_instruction(str))
-// 			exec_op(str, x, 0);
-// 	}
-// 	return (i);
-// }
-
-// int	get_next_inst(t_all *x)
-// {
-// 	char	*buff;
-// 	char	*str;
-// 	int		new;
-
-// 	new = 1;
-// 	while (get_next_line(&buff) > 0)
-// 	{
-// 		if (new)
-// 			str = ft_strdup("");
-// 		if (buff[0] != '\0')
-// 		{
-// 			new = 0;
-// 			helper(x, str, &buff[0], 1);
-// 		}
-// 		else
-// 			print_err(str);
-// 		new = 1;
-// 		free(str);
-// 		free(buff);
-// 	}
-// 	return (helper(x, buff, NULL, 0));
-// }
+	m.new = 1;
+	while (get_next_line(&m.buff) > 0)
+	{
+		if (m.new)
+			m.str = ft_strdup("");
+		if (m.buff[0] != '\0')
+		{
+			m.new = 0;
+			m.temp = m.str;
+			m.str = ft_strjoin(m.str, &(m.buff[0]));
+			free (m.temp);
+			if (valid_instruction(m.str))
+				exec_op(m.str, x, 0);
+		}
+		else
+			print_err(m.str);
+		m.new = 1;
+		free(m.str);
+		free(m.buff);
+	}
+	return (helper(&m, x));
+}
 
 int	main(int argc, char **argv)
 {
