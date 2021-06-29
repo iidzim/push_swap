@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 12:11:39 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 12:18:01 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,14 @@ void	free_tab(char **tab)
 int	valid_instruction(char *inst)
 {
 	int		i;
-	int		len;
 	char	**tab;
 
 	tab = ft_split("sa sb ss pa pb ra rb rr rra rrb rrr", 32);
 	i = -1;
-	len = ft_strlen(inst);
-	printf("*********[%s]\n", inst);
 	while (++i < 11)
 	{
 		if (!strcmp(inst, tab[i]))
 		{
-			printf("okok\n");
 			free_tab(tab);
 			return (1);
 		}
@@ -95,42 +91,10 @@ int    get_next_line(char **line)
     return (flag);
 }
 
-// int	get_next_inst(t_all *x)
-// {
-// 	char	*line;
-// 	char	*str;
-// 	char	*temp;
-
-// 	str = ft_strdup("");
-// 	while (get_next_line(&line) > 0)
-// 	{
-// 		// printf("line >>> %s\n", line);
-// 		if (line[0] == '\0')
-// 			break;
-// 		temp = str;
-// 		str = ft_strjoin(str, line);
-// 		free(temp);
-// 		free(line);
-// 	}
-// 	free(line);
-// 	printf("str >>> %s\n", str);
-// 	if (valid_instruction(str) && ft_strlen(str))
-// 		exec_op(str, x, 0);
-// 	else //if (!valid_instruction(str) && ft_strlen(str))
-// 	{
-// 		write(2, "Error\n", 6);
-// 		free(str);
-// 		return (1);
-// 	}
-// 	free(str);
-// 	return (0);
-// }
-
 int	print_err(char *str)
 {	
-	(void)str;
 	write(2, "Error\n", 6);
-	// free(str);
+	free(str);
 	exit (1);
 }
 int	get_next_inst(t_all *x)
@@ -149,24 +113,23 @@ int	get_next_inst(t_all *x)
 		{
 			new = 0;
 			pfree = str;
-			str = ft_strjoin (str, &buff[0]);
+			str = ft_strjoin(str, &buff[0]);
 			free (pfree);
-			printf ("|%s|\n", str);
 			if (valid_instruction(str))
 				exec_op(str, x, 0);
-			// else
-			// 	print_err(str);
 		}
 		else
 			print_err(str);
 		new = 1;
+		free(str);
+		free(buff);
 	}
 	if (buff[0])
 	{
 		if (valid_instruction(buff))
-			exec_op(str, x, 0);
+			exec_op(buff, x, 0);
 		else
-			print_err(str);	
+			print_err(buff);	
 	}
 	free(buff);
 	return (0);
