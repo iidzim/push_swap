@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/27 16:16:48 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 12:05:56 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ void	fill_list(int *dup, t_all *x)
 	}
 }
 
-int	sorted(t_list *l)
+int	sorted(t_all *x)
 {
 	t_list	*temp;
 
-	temp = l;
-	if (l != NULL && l->next != NULL)
+	if (x->b)
+		return (0);
+	temp = x->a;
+	if (temp != NULL && temp->next != NULL)
 	{
 		while (temp->next != NULL)
 		{
@@ -42,7 +44,7 @@ int	sorted(t_list *l)
 		}
 		return (1);
 	}
-	if (l != NULL && l->next == NULL)
+	if (temp != NULL && temp->next == NULL)
 		return (1);
 	return (0);
 }

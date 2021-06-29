@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:51:15 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/27 17:08:43 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 12:05:01 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	{
 		if (!valid_nbr(argc, argv, &x))
 		{	
-			if (sorted(x.a))
+			if (sorted(&x))
 				return (0);
 			else
 			{

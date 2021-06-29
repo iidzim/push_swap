@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 15:53:46 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/27 12:45:08 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 11:37:55 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,31 @@ int	ft_return(char **str, char **line)
 	return (ft_free(str, 0));
 }
 
-int	get_next_line(int fd, char **line, int buff_size)
-{
-	ssize_t		r;
-	static char	*str;
-	char		*ptr;
-	char		*buff;
+// int	get_next_line(int fd, char **line, int buff_size)
+// {
+// 	ssize_t		r;
+// 	static char	*str;
+// 	char		*ptr;
+// 	char		*buff;
 
-	buff = malloc(sizeof(char) * buff_size + 1);
-	if (buff_size < 0 || !buff || fd < 0 || !line)
-		return (-1);
-	if (!str)
-		str = ft_strdup("");
-	r = read(fd, buff, buff_size);
-	while (r > 0)
-	{
-		buff[r] = '\0';
-		ptr = str;
-		str = ft_strjoin(str, buff);
-		ft_free(&ptr, 0);
-		if (ft_find(str))
-			break ;
-		r = read(fd, buff, buff_size);
-	}
-	ft_free(&buff, 0);
-	if (r == -1)
-		return (ft_free(&str, -1));
-	return (ft_return(&str, line));
-}
+// 	buff = malloc(sizeof(char) * buff_size + 1);
+// 	if (buff_size < 0 || !buff || fd < 0 || !line)
+// 		return (-1);
+// 	if (!str)
+// 		str = ft_strdup("");
+// 	r = read(fd, buff, buff_size);
+// 	while (r > 0)
+// 	{
+// 		buff[r] = '\0';
+// 		ptr = str;
+// 		str = ft_strjoin(str, buff);
+// 		ft_free(&ptr, 0);
+// 		if (ft_find(str))
+// 			break ;
+// 		r = read(fd, buff, buff_size);
+// 	}
+// 	ft_free(&buff, 0);
+// 	if (r == -1)
+// 		return (ft_free(&str, -1));
+// 	return (ft_return(&str, line));
+// }
