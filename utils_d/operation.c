@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 18:25:20 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/27 16:24:48 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 17:17:46 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	push(t_all *x, char c, int i)
 		ft_delete_node(&x->b);
 		if (i == 1)
 			write(1, "pa\n", 3);
+		x->size_a += 1;
 	}
 	else if (c == 'b' && tmp_a != NULL)
 	{
@@ -94,8 +95,9 @@ void	push(t_all *x, char c, int i)
 		ft_delete_node(&x->a);
 		if (i == 1)
 			write(1, "pb\n", 3);
+		x->size_a -= 1;
 	}
-	x->moves += 1;
+	// x->moves += 1;
 }
 
 int	exec_op(char *inst, t_all *x, int i)

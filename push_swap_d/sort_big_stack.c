@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 16:27:57 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 16:54:46 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 19:29:22 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,10 @@ t_all	*radix_sort(t_all *x)
 		}
 		push_b_to_a(x);
 		shift += 1;
+		printf(">>>>>>>>shift = %d\n", shift);
+		// printf("---------------------\n");
+		// print_list(x->a);
+		// printf("---------------------\n");
 	}
 	return (x);
 }
@@ -113,8 +117,10 @@ void	sort_big_stack(t_all *x)
 	int	*dup_stack_a;
 
 	dup_stack_a = duplicate_sort_stack_a(x, x->size_a);
+	print_list(x->a);
 	x->a = index_stack(x->a, dup_stack_a);
 	free(dup_stack_a);
 	get_maxbits(x, x->max_num);
+	printf("get_maxbits\t%d\n", x->max_num);
 	x = radix_sort(x);
 }

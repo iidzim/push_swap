@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 13:09:21 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 19:15:33 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void	sort_small_stack(t_all *x);
 ** sort_big_stack.c
 */
 void	sort_big_stack(t_all *x);
+void	print_list(t_list *l);
 
 #endif

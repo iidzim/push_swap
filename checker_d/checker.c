@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 16:17:06 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 18:33:27 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,18 @@ int	get_next_inst(t_all *x)
 	return (helper(&m, x));
 }
 
+void print_list(t_list *l)
+{
+	t_list *temp;
+
+	temp = l;
+	while (temp)
+	{
+		printf("<%d>\n", temp->value);
+		temp = temp->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_all	x;
@@ -73,7 +85,10 @@ int	main(int argc, char **argv)
 	{
 		if (!valid_nbr(argc, argv, &x))
 		{
+			// print_list(x.a);
 			get_next_inst(&x);
+			// printf("**********\n");
+			// print_list(x.a);
 			if (sorted(&x))
 				write(1, "OK\n", 3);
 			else

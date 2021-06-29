@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 16:14:59 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/27 16:02:40 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/06/29 19:12:24 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@ void	push_min_to_stack(t_all *x, int min, char c)
 		cpt += 1;
 		temp = temp->next;
 	}
-	if (cpt <= (x->size_a / 2))
+	if (cpt <= x->size_a / 2)
 	{
 		while (cpt-- > 0)
 			rot(x, c, 1);
 	}
 	else
 	{
-		while ((--cpt) - x->size_a / 2 > 0)
+		while (x->size_a - cpt++ > 0)
 			reverse_rot(x, c, 1);
+		
 	}
 	push(x, 'b', 1);
 }
