@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 18:25:20 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 17:17:46 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/07/04 17:02:16 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,8 @@ void	swap(t_all *x, char c, int i)
 		help_swap(&x->a);
 		help_swap(&x->b);
 		if (i == 1)
-		{
 			write(1, "ss\n", 3);
-			x->moves += 1;
-		}
 	}
-	x->moves += 1;
 }
 
 void	push(t_all *x, char c, int i)
@@ -97,7 +93,6 @@ void	push(t_all *x, char c, int i)
 			write(1, "pb\n", 3);
 		x->size_a -= 1;
 	}
-	// x->moves += 1;
 }
 
 int	exec_op(char *inst, t_all *x, int i)

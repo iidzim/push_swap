@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:48 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 19:15:33 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/07/04 17:03:00 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_all
 	t_list			*b;
 	int				size_a;
 	int				size_b;
-	int				moves;
+	int				size;
 	int				maxbits;
 	int				max_num;
 }				t_all;

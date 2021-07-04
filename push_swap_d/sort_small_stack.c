@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 16:14:59 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 19:12:24 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/07/04 17:07:57 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,11 @@ void	push_min_to_stack(t_all *x, int min, char c)
 	{
 		while (x->size_a - cpt++ > 0)
 			reverse_rot(x, c, 1);
-		
 	}
 	push(x, 'b', 1);
 }
 
-int	operations_3num(t_all *x, int max, int top, int middle)
+void	operations_3num(t_all *x, int max, int top, int middle)
 {
 	if (max == top)
 		rot(x, 'a', 1);
@@ -50,10 +49,9 @@ int	operations_3num(t_all *x, int max, int top, int middle)
 	middle = x->a->next->value;
 	if (top > middle)
 		swap(x, 'a', 1);
-	return (x->moves);
 }
 
-int	sort_3num(t_all *x)
+void	sort_3num(t_all *x)
 {
 	int	top;
 	int	middle;
@@ -62,10 +60,10 @@ int	sort_3num(t_all *x)
 	top = x->a->value;
 	middle = x->a->next->value;
 	max = find_max_min(x->a, 1);
-	return (operations_3num(x, max, top, middle));
+	operations_3num(x, max, top, middle);
 }
 
-int	sort_5num(t_all *x)
+void	sort_5num(t_all *x)
 {
 	int	min1;
 	int	min2;
@@ -77,10 +75,9 @@ int	sort_5num(t_all *x)
 	}
 	min2 = find_max_min(x->a, 2);
 	push_min_to_stack(x, min2, 'a');
-	x->moves += sort_3num(x);
+	sort_3num(x);
 	push(x, 'a', 1);
 	push(x, 'a', 1);
-	return (x->moves);
 }
 
 void	sort_small_stack(t_all *x)
@@ -91,7 +88,7 @@ void	sort_small_stack(t_all *x)
 			swap(x, 'a', 1);
 	}
 	else if (x->size_a == 3)
-		x->moves = sort_3num(x);
+		sort_3num(x);
 	else
-		x->moves = sort_5num(x);
+		sort_5num(x);
 }

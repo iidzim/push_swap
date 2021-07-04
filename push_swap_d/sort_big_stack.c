@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 16:27:57 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 19:29:22 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/07/04 17:05:29 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,18 @@ int	*duplicate_sort_stack_a(t_all *x, int size)
 	return (sort_tab(dup_stack_a, x));
 }
 
-t_list	*index_stack(t_list *l, int *tab)
+t_list	*index_stack(t_all *x, int *tab)
 {
 	t_list	*temp;
 	int		pos;
 	int		value;
 
-	if (!l)
-		return (NULL);
-	temp = l;
+	temp = x->a;
 	while (temp)
 	{
 		pos = -1;
 		value = temp->value;
-		while (tab[++pos])
+		while (++pos < x->size_a)
 		{
 			if (value == tab[pos])
 			{
@@ -55,17 +53,17 @@ t_list	*index_stack(t_list *l, int *tab)
 		}
 		temp = temp->next;
 	}
-	return (l);
+	return (x->a);
 }
 
 void	get_maxbits(t_all *x, int i)
 {
-	int		num;
 	t_list	*temp;
+	int		num;
 
 	temp = x->a;
 	num = 0;
-	while (temp->next)
+	while (temp)
 	{
 		if (temp->value == i)
 		{
@@ -92,7 +90,7 @@ t_all	*radix_sort(t_all *x)
 	{
 		temp_a = x->a;
 		i = 0;
-		while (temp_a && i < x->size_a)
+		while (temp_a && i < x->size)
 		{
 			i += 1;
 			index = temp_a->index;
@@ -104,10 +102,6 @@ t_all	*radix_sort(t_all *x)
 		}
 		push_b_to_a(x);
 		shift += 1;
-		printf(">>>>>>>>shift = %d\n", shift);
-		// printf("---------------------\n");
-		// print_list(x->a);
-		// printf("---------------------\n");
 	}
 	return (x);
 }
@@ -116,11 +110,10 @@ void	sort_big_stack(t_all *x)
 {
 	int	*dup_stack_a;
 
+	x->size = x->size_a;
 	dup_stack_a = duplicate_sort_stack_a(x, x->size_a);
-	print_list(x->a);
-	x->a = index_stack(x->a, dup_stack_a);
+	x->a = index_stack(x, dup_stack_a);
 	free(dup_stack_a);
 	get_maxbits(x, x->max_num);
-	printf("get_maxbits\t%d\n", x->max_num);
 	x = radix_sort(x);
 }

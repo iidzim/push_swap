@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:38:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/26 12:43:09 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/07/04 17:02:49 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,8 @@ void	rot(t_all *x, char c, int i)
 		help_rot(&x->a);
 		help_rot(&x->b);
 		if (i == 1)
-		{
 			write(1, "rr\n", 3);
-			x->moves += 1;
-		}
 	}
-	x->moves += 1;
 }
 
 /*
@@ -106,10 +102,6 @@ void	reverse_rot(t_all *x, char c, int i)
 		help_rrot(&x->a);
 		help_rrot(&x->b);
 		if (i == 1)
-		{
 			write(1, "rrr\n", 4);
-			x->moves += 1;
-		}
 	}
-	x->moves += 1;
 }

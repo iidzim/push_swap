@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:20:12 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 13:08:38 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/07/04 16:22:19 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ int	*sort_tab(int *tab, t_all *x)
 	int	temp;
 
 	i = -1;
-	while (tab[++i])
+	while (++i < x->size_a)
 	{
 		j = i;
-		while (tab[++j])
+		while (++j < x->size_a)
 		{
 			if (tab[i] > tab[j])
 			{
