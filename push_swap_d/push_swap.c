@@ -6,23 +6,11 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:51:15 by iidzim            #+#    #+#             */
-/*   Updated: 2021/07/04 17:07:45 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/07/04 19:57:44 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-void	print_list(t_list *l)
-{
-	t_list	*temp;
-
-	temp = l;
-	while (temp)
-	{
-		printf("%d - %d\n", temp->value, temp->index);
-		temp = temp->next;
-	}
-}
 
 int	main(int argc, char **argv)
 {

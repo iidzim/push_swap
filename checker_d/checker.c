@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 15:14:25 by iidzim            #+#    #+#             */
-/*   Updated: 2021/07/04 17:07:10 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/07/04 19:58:21 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,6 @@ int	get_next_inst(t_all *x)
 		free(m.buff);
 	}
 	return (helper(&m, x));
-}
-
-void	print_list(t_list *l)
-{
-	t_list	*temp;
-
-	temp = l;
-	while (temp)
-	{
-		printf("<%d>\n", temp->value);
-		temp = temp->next;
-	}
 }
 
 int	main(int argc, char **argv)

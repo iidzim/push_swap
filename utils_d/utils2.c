@@ -6,7 +6,7 @@
 /*   By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:49:05 by iidzim            #+#    #+#             */
-/*   Updated: 2021/06/29 13:15:24 by iidzim           ###   ########.fr       */
+/*   Updated: 2021/07/04 19:48:20 by iidzim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	overflow(long n, int *dup)
 	{
 		write(2, "Error\n", 6);
 		free(dup);
+		system("leaks push_swap");
 		exit(1);
 	}
 	return ((int)n);
