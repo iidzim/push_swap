@@ -6,7 +6,7 @@
 #    By: iidzim <iidzim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/27 14:24:43 by iidzim            #+#    #+#              #
-#    Updated: 2021/06/29 10:09:21 by iidzim           ###   ########.fr        #
+#    Updated: 2021/07/06 10:30:53 by iidzim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS			=	./push_swap_d/push_swap.c\
 					./push_swap_d/sort_small_stack.c
 
 SRCB			=	./checker_d/checker.c\
-					./checker_d/gnl.c\
+					./checker_d/gnl.c
 					
 
 SRC				=	./utils_d/ft_split.c\
